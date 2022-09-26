@@ -495,15 +495,26 @@
                         </div>
                     </div>
      
-    <Scripts>
-        <asp:ScriptReference Path="vendor/jquery/jquery.min.js" />
-        <asp:ScriptReference Path="vendor/bootstrap/js/bootstrap.bundle.min.js" />
-        <asp:ScriptReference Path="vendor/jquery-easing/jquery.easing.min.js" />
-        <asp:ScriptReference Path="js/sb-admin-2.min.js" />
-        <asp:ScriptReference Path="vendor/datatables/jquery.dataTables.min.js" />
-        <asp:ScriptReference Path="vendor/datatables/dataTables.bootstrap4.min.js" />
-        <asp:ScriptReference Path="js/demo/datatables-demo.js" />
-    </Scripts>
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+        <Scripts>
+            <asp:ScriptReference Path="vendor/jquery/jquery.min.js" />
+            <%--<asp:ScriptReference Path="vendor/bootstrap/js/bootstrap.bundle.min.js" />--%>
+            <asp:ScriptReference Path="vendor/jquery-easing/jquery.easing.min.js" />
+            <asp:ScriptReference Path="js/sb-admin-2.min.js" />
+            <asp:ScriptReference Path="vendor/datatables/jquery.dataTables.min.js" />
+            <asp:ScriptReference Path="vendor/datatables/dataTables.bootstrap4.min.js" />
+            <asp:ScriptReference Path="js/demo/datatables-demo.js" />
+        </Scripts> 
+    </asp:ScriptManager>
+
+        <%--<script src='<%=ResolveClientUrl("vendor/jquery/jquery.min.js") %>' type="text/javascript"></script>
+        <script src='<%=ResolveClientUrl("vendor/bootstrap/js/bootstrap.bundle.min.js") %>' type="text/javascript"></script>
+        <script src='<%=ResolveClientUrl("vendor/jquery-easing/jquery.easing.min.js") %>' type="text/javascript"></script>
+        <script src='<%=ResolveClientUrl("js/sb-admin-2.min.js") %>' type="text/javascript"></script>
+        <script src='<%=ResolveClientUrl("vendor/datatables/jquery.dataTables.min.js") %>' type="text/javascript"></script>
+        <script src='<%=ResolveClientUrl("vendor/datatables/dataTables.bootstrap4.min.js") %>' type="text/javascript"></script>
+        <script src='<%=ResolveClientUrl("js/demo/datatables-demo.js") %>' type="text/javascript"></script>--%>
+
 
         </body>
 </asp:Content>
