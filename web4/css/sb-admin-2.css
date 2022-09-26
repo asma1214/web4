@@ -165,7 +165,7 @@ a {
   pointer-events:none;
 }
 a span:not(.description){
-    pointer-events:initial;
+    pointer-events:initial
 }
 a:hover {
   color: #224abe;

@@ -8,7 +8,6 @@
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.bootstrap = factory());
 })(this, (function () { 'use strict';
-
   /**
    * --------------------------------------------------------------------------
    * Bootstrap (v5.2.0): util/index.js
