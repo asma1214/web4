@@ -82,7 +82,7 @@
                       <div class="invalid-feedback">Please enter your password!</div>
                     </div>                        
                       <div class="col-12">
-                          <p><%= clients %></p>
+                          <p class="newColor"><%= errorMsg %></p>
                           </div>
                     <div class="col-12">
                       <div class="form-check">
@@ -91,7 +91,7 @@
                       </div>
                     </div>
                     <div class="col-12">
-                        <asp:Button ID="submit" class="btn btn-primary w-100" OnClick="submit_Click" runat="server" Text="Insert" />
+                        <asp:Button ID="submit" class="btn btn-primary w-100" OnClick="submit_Click" runat="server" Text="Login" />
 
                       <%--<button class="btn btn-primary w-100" type="submit">Login</button>--%>
                     </div>
