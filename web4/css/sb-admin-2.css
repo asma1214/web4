@@ -69,6 +69,7 @@ body {
   background-color: #fff;
 }
 
+
 [tabindex="-1"]:focus:not(:focus-visible) {
   outline: 0 !important;
 }
@@ -9814,9 +9815,10 @@ a:focus {
   overflow-x: hidden;
 }
 
-#wrapper #content-wrapper #content {
-  flex: 1 0 auto;
-}
+    #wrapper #content-wrapper #content {
+        flex: 1 0 auto;
+        background: #EFEBDF
+    }
 
 .container,
 .container-fluid,

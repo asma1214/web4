@@ -51,7 +51,7 @@
 
               <div class="d-flex justify-content-center py-4">
                 <a class="logo d-flex align-items-center w-auto">
-                  <img src="assets/img/logo2.png" alt="">
+                  <img src="assets/img/logo2.png" alt=""/>
                 </a>
               </div><!-- End Logo -->
 
