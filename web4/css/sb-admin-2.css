@@ -4505,6 +4505,26 @@ input[type="button"].btn-block {
   border-radius: 0.35rem;
 }
 
+.newCard {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e3e6f0;
+    border-radius: 0.35rem;
+    width: 700px;
+    height: 400px;
+    left: 45%;
+    top: 50%;
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+    display: block;
+
+}
+
 .card > hr {
   margin-right: 0;
   margin-left: 0;
