@@ -4,14 +4,66 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Xml.Linq;
+using System.Drawing;
+using System.Data;
+using System.Windows;
+using System.Configuration;
+using System.Security.Cryptography.X509Certificates;
+
 
 namespace web4
 {
+
     public partial class WebForm1 : System.Web.UI.Page
     {
+        SqlConnection conn = new SqlConnection("Data Source=ASMA_BADR\\DBWEB; Initial Catalog=webDB; User Id=asmaBadr; Password=webDB1234; Integrated Security=false");
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //Response.Write(tranNum);
+            //for (int i = 0; i < dt.Rows.Count; i++)
+            //{
+            //    Response.Write(dt.Rows[i]["tranNum"]);
+            //    Response.Write("");
+            //}
         }
+        public int Print_Table()
+        {
+            string date = "dd/MM/yyyy";
+            conn.Open();
+            SqlDataAdapter cmd = new SqlDataAdapter("SELECT * from [transaction]", conn);
+            DataTable dt = new DataTable();
+            cmd.Fill(dt);
+            for(int i = 0; i < dt.Rows.Count; i++)
+            {
+                Response.Write("<tr>");
+                for(int j=0; j < dt.Columns.Count; j++)
+                {
+                    Response.Write("<td>");
+                    if (j == 1)
+                    {
+                        Response.Write(dt.Rows[i].Field<DateTime>("receivedDate").ToString(date));
+
+                    }
+                    else
+                    {
+                        Response.Write(dt.Rows[i][j].ToString());
+
+                    }
+                    Response.Write("</td>");
+
+                }
+                Response.Write("</tr>");
+            }
+            
+            conn.Close();
+
+            return 0;
+        }
+
+
+
+
     }
 }
