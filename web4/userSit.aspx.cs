@@ -35,6 +35,7 @@ namespace web4
             SqlDataAdapter cmd = new SqlDataAdapter("SELECT * from [transaction]", conn);
             DataTable dt = new DataTable();
             cmd.Fill(dt);
+
             for(int i = 0; i < dt.Rows.Count; i++)
             {
                 Response.Write("<tr>");

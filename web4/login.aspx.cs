@@ -33,8 +33,7 @@ namespace web4
             string username;
             string password;
             string name;
-            //SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM users WHERE username='" + yourUsername.Value + "'", conn);
-            //SELECT * FROM users WHERE username
+            string role;
             SqlCommand cmd = new SqlCommand("SELECT * FROM login WHERE username='" + yourUsername.Value + "'", conn);
             conn.Open();
             SqlDataReader reader = cmd.ExecuteReader();
@@ -42,44 +41,25 @@ namespace web4
             username = reader["username"].ToString();
             password = reader["password"].ToString();
             name = reader["name"].ToString();
+            role = reader["role"].ToString();
             conn.Close();
             if(username == yourUsername.Value && password == yourPassword.Value)
             {
+                if(role == "a") { 
                 Session["name"] = name;
                 Response.Redirect("userSit.aspx");
+                }
+                else
+                {
+
+                }
+                Session["role"] = role;
 
             }
             else
             {
                 this.errorMsg = "Invalid username or password";
             }
-
-
-            //SqlCommand cmd = new SqlCommand("select userName, password FROM login WHERE userName=username AND password=password", conn);
-
-            //SqlCommand cmd = new SqlCommand("insert into login values('" + yourUsername.Value + "','" + yourPassword.Value + "')", conn);
-            //cmd.ExecuteNonQuery();
-            //result.Text = "Record Sumbited successfully!";
-          
-            //{
-
-                //    Response.Redirect("userSit.aspx");
-
-                //    /* I have made a new page called home page. If the user is successfully authenticated then the form will be moved to the next form */
-                //    //this.Hide();
-                //    // new home().Show();
-                //}
-                //else
-                //{
-                //    this.clients = "Invalid username or password";
-                //    //this.clients = "Invalid username or password";
-                //    //MessageBox.Show("Invalid username or password");
-                //    conn.Close();
-
-
-
-                //}
-
 
         }
 
