@@ -5213,14 +5213,23 @@ a.badge-dark:focus, a.badge-dark.focus {
   }
 }
 
+#flexRight {
+    color: #dc3545;
+    display: flex;
+    width: 50%;
+    margin: auto;
+    padding: 15px;
+    justify-content: end;
+}
+
 .progress {
-  display: flex;
-  height: 1rem;
-  overflow: hidden;
-  line-height: 0;
-  font-size: 0.75rem;
-  background-color: #eaecf4;
-  border-radius: 0.35rem;
+    display: flex;
+    height: 1rem;
+    overflow: hidden;
+    line-height: 0;
+    font-size: 0.75rem;
+    background-color: #eaecf4;
+    border-radius: 0.35rem;
 }
 
 .progress-bar {

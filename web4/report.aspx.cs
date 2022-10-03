@@ -11,7 +11,11 @@ namespace web4
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
+        public string errMsg;
         SqlConnection conn = new SqlConnection("Data Source=ASMA_BADR\\DBWEB; Initial Catalog=webDB; User Id=asmaBadr; Password=webDB1234; Integrated Security=false");
+        DataTable dt = new DataTable();
+        string date = "dd/MM/yyyy";
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,20 +25,59 @@ namespace web4
 
         protected void submit_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, GetType(), "JavaScript", "showTable();", true);
 
+            if (empName.Value.Length == 0)
+                if(fromDate.Value.Length == 0 || toDate.Value.Length == 0)
+                {
+                     errMsg = "عليك اختيار نطاق من التاريخ";
+                }
+                else
+                {
 
-
-            //string Date1 = fromDate.Value;
-            //conn.Open();
+                SqlDataAdapter cmd = new SqlDataAdapter("SELECT * from [transaction] WHERE receivedDate BETWEEN '" +fromDate.Value+ "' AND '" +toDate.Value+ "'", conn);
+                conn.Open();
+                cmd.Fill(dt);
+                conn.Close();
+                }
             //SqlDataAdapter cmd = new SqlDataAdapter("SELECT * from [transaction] WHERE receivedDate BETWEEN'" + fromDate.Value + "AND '" + toDate.Value + '"', conn);
             //SqlDataAdapter cmd = new SqlDataAdapter("SELECT * from [transaction] WHERE receivedDate BETWEEN '"+fromDate+"' AND '"+toDate+"' OR employeeName= '"+empName.Value+"'", conn);
 
 
 
-            //DataTable dt = new DataTable();
-            //cmd.Fill(dt);
 
+        }
+
+        public int Print_Table()
+        {
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                Response.Write("<tr>");
+                for (int j = 0; j < dt.Columns.Count; j++)
+                {
+                    Response.Write("<td>");
+                    if (j == 1)
+                    {
+                        Response.Write(dt.Rows[i].Field<DateTime>("receivedDate").ToString(date));
+
+                    }
+                    else
+                    {
+                        Response.Write(dt.Rows[i][j].ToString());
+
+                    }
+                    Response.Write("</td>");
+
+                }
+                Response.Write("</tr>");
+            }
+
+            if(dt.Rows.Count != 0)
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "JavaScript", "showTable();", true);
+
+            }
+            return 0;
         }
     }
 

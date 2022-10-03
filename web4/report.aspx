@@ -12,7 +12,7 @@
                     <div class="form-group">
                         <input type="text" class="form-control form-control-user"
                             id="empName" aria-describedby="emailHelp"
-                            placeholder="أسم الموظف" runat="server">
+                            placeholder="إسم الموظف" runat="server">
                     </div>
                     <hr>
                     <div class="form-group">
@@ -23,14 +23,13 @@
                         <input type="date" class="form-control form-control-user"
                             id="toDate" placeholder="الى تاريخ" runat="server">
                     </div>
+                          <p class="newColor" id="flexRight"><%= errMsg %></p>
                     <div class="form-group">
 
                         <asp:Button type="button" ID="submit" class="btn btn-primary w-100" OnClick="submit_Click" Text="submit" runat="server" />
                     </div>
                 </div>
                 </div>
-
-
                         <div  id="Box" class="table-responsive" style="display: none;">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
@@ -45,10 +44,13 @@
                                 </thead>
                                 
                                 <tbody>
+                                    <% Print_Table(); %>
                                 </tbody>
                             </table>
 
                         </div>
+            </div>
+
   
         <script src="js/showTable.js"></script>
 
