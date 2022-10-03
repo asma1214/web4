@@ -12,15 +12,12 @@
 //    }
 //});
 
-//function showTable() {
-//    var x = document.getElementById("Box");
-//    if (x.style.display === "none") {
-//        x.style.display = "block";
-//    } else {
-//        x.style.display = "none";
-//    }
-//}
-
 function showTable() {
-    alert("hi");
+    var x = document.getElementById("Box");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
 }
+

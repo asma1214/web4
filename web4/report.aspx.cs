@@ -21,7 +21,8 @@ namespace web4
 
         protected void submit_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this.GetType(), "JavaScript", "javascript:function_name(); ", true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "JavaScript", "showTable();", true);
+
 
 
             //string Date1 = fromDate.Value;
