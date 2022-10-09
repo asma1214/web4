@@ -9,6 +9,7 @@
             </div>
             <div class="card-body">
                 <div class="p-5">
+                        <%--<label>إسم الموظف</label>--%>
                     <div class="form-group">
                         <input type="text" class="form-control form-control-user"
                             id="empName" aria-describedby="emailHelp"
@@ -16,9 +17,11 @@
                     </div>
                     <hr>
                     <div class="form-group">
+                        <%--<label>من تاريخ</label>--%>
                         <input type="date" class="form-control form-control-user"
                             id="fromDate" name="fromDate" placeholder="من تاريخ" runat="server">
                     </div>
+                    <%--<label>الى تاريخ</label>--%>
                     <div class="form-group">
                         <input type="date" class="form-control form-control-user"
                             id="toDate" placeholder="الى تاريخ" runat="server">
