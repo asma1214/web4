@@ -3,9 +3,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <head>
-
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link href="css/style.css" rel="stylesheet" />
-
 
     </head>
     <body>
@@ -37,7 +36,6 @@
         </div>
     </div>
 </div>  
-    <%--<script src="js/jsStyle.js"></script>--%>
     </body>
 
 
@@ -46,19 +44,29 @@
 
 
 
+ <%--   <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="userJS/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jsStyle.js"></script>--%>
 
 
 
     <asp:ScriptManager ID="ScriptManager1" runat="server">
         <Scripts>
-            <asp:ScriptReference Path="vendor/jquery/jquery.min.js" />
+             <asp:ScriptReference Path="vendor/jquery/jquery.min.js" />
+            <asp:ScriptReference Path="userJS/popper.min.js" />
+            <%--<asp:ScriptReference Path="vendor/bootstrap/js/bootstrap.min.js" />--%>
+            <asp:ScriptReference Path="js/jsStyle.js" />
+
+
+          <%--  <asp:ScriptReference Path="vendor/jquery/jquery.min.js" />
             <asp:ScriptReference Path="userJS/popper.min.js" />
             <asp:ScriptReference Path="vendor/bootstrap/js/bootstrap.min.js" />
-            <asp:ScriptReference Path="js/jsStyle.js" />
+            <asp:ScriptReference Path="js/jsStyle.js" />--%>
 
             <%--<asp:ScriptReference Path="https://code.jquery.com/jquery-3.5.1.min.js" />
             <asp:ScriptReference Path="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" />
-            <asp:ScriptReference Path="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" />  --%>   
+            <asp:ScriptReference Path="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" />     --%>
         </Scripts>
     </asp:ScriptManager>
 </asp:Content>
