@@ -2016,6 +2016,7 @@
     <Content Include="mngUsr.aspx" />
     <Content Include="WebForm4.aspx" />
     <Content Include="WebForm5.aspx" />
+    <Content Include="userInbox.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="index.aspx.cs">
@@ -2074,6 +2075,13 @@
     </Compile>
     <Compile Include="WebForm5.aspx.designer.cs">
       <DependentUpon>WebForm5.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="userInbox.aspx.cs">
+      <DependentUpon>userInbox.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="userInbox.aspx.designer.cs">
+      <DependentUpon>userInbox.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

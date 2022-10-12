@@ -45,15 +45,15 @@ namespace web4
             conn.Close();
             if(username == yourUsername.Value && password == yourPassword.Value)
             {
-                if(role == "a") { 
                 Session["name"] = name;
+                Session["role"] = role;
+                if(role == "a") { 
                 Response.Redirect("userSit.aspx");
                 }
                 else
                 {
-
+                    Response.Redirect("userInbox.aspx");
                 }
-                Session["role"] = role;
 
             }
             else

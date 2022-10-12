@@ -22,8 +22,7 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.css" rel="stylesheet"/>
-<%--    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">--%>
-    <script src="vendor/jquery/jquery.min.js"></script>
+
 
 
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -71,9 +70,11 @@
                     <i class="fas fa-file-alt"></i>
                 </a>
             </li>
+            <%if (Session["role"] == "u")
+                {  %>
 
             <hr class="sidebar-divider">
-            <li class="nav-item">
+            <li class="nav-item" style="display= none;">
                 <a class="nav-link collapsed" href="mngUsr.aspx" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <span>إدارة المستخدمين</span>
@@ -81,6 +82,7 @@
                     <i class="fas fa-user-cog"></i>
                 </a>
             </li>
+            <%} %>
 
         </ul>
         <!-- End of Sidebar -->
