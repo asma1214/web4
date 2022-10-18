@@ -25,104 +25,82 @@ namespace web4
 
         protected void submit_Click(object sender, EventArgs e)
         {
-
-            if(empName.Value.Length != 0)
+            string role = Session["role"].ToString();
+            if (role == "a")
             {
-                if(fromDate.Value.Length != 0 && toDate.Value.Length != 0)
+
+                if (empName.Value.Length != 0)
                 {
-                    int result = DateTime.Compare(DateTime.Parse(fromDate.Value), DateTime.Parse(toDate.Value));
-                    if (result > 0)
+                    if (fromDate.Value.Length != 0 && toDate.Value.Length != 0)
                     {
-                        errMsg = "نطاق تاريخ غير صالح";
+                        int result = DateTime.Compare(DateTime.Parse(fromDate.Value), DateTime.Parse(toDate.Value));
+                        if (result > 0)
+                        {
+                            errMsg = "نطاق تاريخ غير صالح";
+                        }
+                        SqlDataAdapter cmd = new SqlDataAdapter("SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum from [transaction] WHERE receivedDate BETWEEN '" + fromDate.Value + "' AND '" + toDate.Value + "' AND employeeName= '" + empName.Value + "'", conn);
+                        conn.Open();
+                        cmd.Fill(dt);
+                        conn.Close();
                     }
-                    SqlDataAdapter cmd = new SqlDataAdapter("SELECT * from [transaction] WHERE receivedDate BETWEEN '" + fromDate.Value + "' AND '" + toDate.Value + "' AND employeeName= '" + empName.Value + "'", conn);
-                    conn.Open();
-                    cmd.Fill(dt);
-                    conn.Close();
+                    else if (fromDate.Value.Length == 0 && toDate.Value.Length == 0)
+                    {
+                        SqlDataAdapter cmd = new SqlDataAdapter("SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum from [transaction] WHERE employeeName= '" + empName.Value + "'", conn);
+                        conn.Open();
+                        cmd.Fill(dt);
+                        conn.Close();
+                    }
+
+                    else if (fromDate.Value.Length == 0 || toDate.Value.Length == 0)
+                        errMsg = "عليك اختيار نطاق من التاريخ";
+
                 }
-                else if(fromDate.Value.Length == 0 && toDate.Value.Length == 0)
+                else
                 {
-                    SqlDataAdapter cmd = new SqlDataAdapter("SELECT * from [transaction] WHERE employeeName= '" + empName.Value + "'", conn);
-                    conn.Open();
-                    cmd.Fill(dt);
-                    conn.Close();
+                    if (fromDate.Value.Length == 0 || toDate.Value.Length == 0)
+                        errMsg = "عليك اختيار نطاق من التاريخ";
+
+
+
+                    else
+                    {
+                        int result = DateTime.Compare(DateTime.Parse(fromDate.Value), DateTime.Parse(toDate.Value));
+                        if (result > 0)
+                        {
+                            errMsg = "نطاق تاريخ غير صالح";
+                        }
+                        else
+                        {
+
+                            SqlDataAdapter cmd = new SqlDataAdapter("SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum from [transaction] WHERE receivedDate BETWEEN '" + fromDate.Value + "' AND '" + toDate.Value + "'", conn);
+                            conn.Open();
+                            cmd.Fill(dt);
+                            conn.Close();
+                        }
+                    }
+
+
+
                 }
-
-                else if(fromDate.Value.Length == 0 || toDate.Value.Length == 0)
-                    errMsg = "عليك اختيار نطاق من التاريخ";
-
             }
             else
             {
-                if (fromDate.Value.Length == 0 || toDate.Value.Length == 0)
-                    errMsg = "عليك اختيار نطاق من التاريخ";
-
-
-
-                else
+                string username = Session["username"].ToString();
+                int result = DateTime.Compare(DateTime.Parse(fromDate.Value), DateTime.Parse(toDate.Value));
+                if (result > 0)
                 {
-                    int result = DateTime.Compare(DateTime.Parse(fromDate.Value), DateTime.Parse(toDate.Value));
-                    if (result > 0)
-                    {
-                        errMsg = "نطاق تاريخ غير صالح";
-                    }
-                    else
-                    {
-
-                    SqlDataAdapter cmd = new SqlDataAdapter("SELECT * from [transaction] WHERE receivedDate BETWEEN '" + fromDate.Value + "' AND '" + toDate.Value + "'", conn);
+                    errMsg = "نطاق تاريخ غير صالح";
+                }
+                
+               
+                    SqlDataAdapter cmd = new SqlDataAdapter("SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum" +
+                        " from [transaction] WHERE receivedDate BETWEEN '" + fromDate.Value + "' AND '" + toDate.Value + "' AND username= '" +username + "'", conn);
                     conn.Open();
                     cmd.Fill(dt);
                     conn.Close();
-                    }
-                }
-
-
+                
 
             }
-
-            //if (empName.Value.Length == 0)
-            //    if(fromDate.Value.Length == 0 || toDate.Value.Length == 0)
-            //    {
-            //         errMsg = "عليك اختيار نطاق من التاريخ";
-            //    }
-            //    else
-            //    {
-
-            //    SqlDataAdapter cmd = new SqlDataAdapter("SELECT * from [transaction] WHERE receivedDate BETWEEN '" +fromDate.Value+ "' AND '" +toDate.Value+ "'", conn);
-            //    conn.Open();
-            //    cmd.Fill(dt);
-            //    conn.Close();
-            //    }
-            //else if(empName.Value.Length != 0)
-            //{
-            //    if(fromDate.Value.Length == 0 && toDate.Value.Length == 0)
-            //    {
-            //        SqlDataAdapter cmd = new SqlDataAdapter("SELECT * from [transaction] WHERE employeeName= '"+empName.Value+"'", conn);
-
-            //    }
-            //    else if (fromDate.Value.Length == 0 || toDate.Value.Length == 0)
-            //         errMsg = "عليك اختيار نطاق من التاريخ";
-            //    {
-
-            //    }
-
-            //}
-            //else
-            //{
-            //    if (fromDate.Value.Length == 0 || toDate.Value.Length == 0)
-            //    {
-            //        errMsg = "عليك اختيار نطاق من التاريخ";
-            //    }
-            //    else
-            //    {
-            //        SqlDataAdapter cmd = new SqlDataAdapter("SELECT * from [transaction] WHERE receivedDate BETWEEN '"+fromDate+"' AND '"+toDate+"' AND employeeName= '"+empName.Value+"'", conn);
-
-            //    }
-
-            //}
-            //SqlDataAdapter cmd = new SqlDataAdapter("SELECT * from [transaction] WHERE receivedDate BETWEEN'" + fromDate.Value + "AND '" + toDate.Value + '"', conn);
-            //SqlDataAdapter cmd = new SqlDataAdapter("SELECT * from [transaction] WHERE receivedDate BETWEEN '"+fromDate+"' AND '"+toDate+"' OR employeeName= '"+empName.Value+"'", conn);
-
 
 
 

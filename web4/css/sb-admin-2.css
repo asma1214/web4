@@ -4374,9 +4374,11 @@ input[type="button"].btn-block {
   padding-left: 0;
 }
 
-.navbar-expand .navbar-nav {
-  flex-direction: row;
-}
+    .navbar-expand .navbar-nav {
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        width: 100%;
+    }
 
 .navbar-expand .navbar-nav .dropdown-menu {
   position: absolute;

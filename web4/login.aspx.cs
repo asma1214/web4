@@ -30,6 +30,7 @@ namespace web4
         protected void submit_Click(object sender, EventArgs e)
         {
             
+            
             string username;
             string password;
             string name;
@@ -42,18 +43,15 @@ namespace web4
             password = reader["password"].ToString();
             name = reader["name"].ToString();
             role = reader["role"].ToString();
+
             conn.Close();
             if(username == yourUsername.Value && password == yourPassword.Value)
             {
                 Session["name"] = name;
                 Session["role"] = role;
-                if(role == "a") { 
+                Session["username"] = username;
                 Response.Redirect("userSit.aspx");
-                }
-                else
-                {
-                    Response.Redirect("userInbox.aspx");
-                }
+
 
             }
             else

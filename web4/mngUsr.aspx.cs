@@ -12,44 +12,42 @@ namespace web4
     public partial class WebForm3 : System.Web.UI.Page
     {
         SqlConnection conn = new SqlConnection("Data Source=ASMA_BADR\\DBWEB; Initial Catalog=webDB; User Id=asmaBadr; Password=webDB1234; Integrated Security=false");
-
+        public bool flag = false;
+        public string msg = "";
+        public string icon;
+        public string title;
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-        public int Print_Table()
+        protected void submit_Click(object sender, EventArgs e)
         {
-            string date = "dd/MM/yyyy";
+            flag = true;
+            //SqlDataAdapter cmd = new SqlDataAdapter("INSERT INTO [login] (username, name) values('"+username.Value+"','"+empName.Value+"')", conn);
             conn.Open();
-            SqlDataAdapter cmd = new SqlDataAdapter("SELECT name,username,phone from [login]", conn);
-            DataTable dt = new DataTable();
-            cmd.Fill(dt);
+            //conn.Close();
+            SqlCommand command;
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            String sql = "INSERT INTO [login] (username, name) values('" + username.Value + "','" + empName.Value + "')";
+            command = new SqlCommand(sql, conn);
+            adapter.InsertCommand = new SqlCommand(sql, conn);
+            int a = adapter.InsertCommand.ExecuteNonQuery();
+            if (a == 0) { 
+                msg = "لم يتم إضافة المستخدم بنجاح";
+                icon = "error";
+                title = "!حدث خطأ";
 
-            for (int i = 0; i < dt.Rows.Count; i++)
+        }
+            else
             {
-                Response.Write("<tr>");
-                for (int j = 0; j < dt.Columns.Count; j++)
-                {
-                    Response.Write("<td>");
+                msg = "تم إضافة المستخدم بنجاح";
+                icon = "success";
+                title = "!تم بنجاح";
 
-                    Response.Write(dt.Rows[i][j].ToString());
-
-                    Response.Write("</td>");
-
-
-
-                }
-                    Response.Write("<td>");
-                    Response.Write(" <a class=\"add\" title=\"Add\" data-toggle=\"tooltip\"><i class=\"material-icons\">&#xE03B;</i></a>");
-                    Response.Write("<a class=\"edit\" title=\"Edit\" data-toggle=\"tooltip\"><i class=\"material-icons\">&#xE254;</i></a>\r\n");
-                    Response.Write("<a class=\"delete\" title=\"Delete\" data-toggle=\"tooltip\"><i class=\"material-icons\">&#xE872;</i></a>");
-                    Response.Write("</td>");
-                Response.Write("</tr>");
             }
+                
 
-            conn.Close();
 
-            return 0;
         }
     }
 }

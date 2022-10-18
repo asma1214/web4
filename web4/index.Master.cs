@@ -14,5 +14,17 @@ namespace web4
             Page.Header.DataBind();
 
         }
+
+        protected void submit_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("login.aspx");
+
+        }
+
+        protected void logout()
+        {
+
+        }
     }
 }

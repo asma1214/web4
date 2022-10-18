@@ -11,6 +11,7 @@ using System.Data;
 using System.Windows;
 using System.Configuration;
 using System.Security.Cryptography.X509Certificates;
+using System.Reflection;
 
 
 namespace web4
@@ -32,7 +33,32 @@ namespace web4
         {
             string date = "dd/MM/yyyy";
             conn.Open();
-            SqlDataAdapter cmd = new SqlDataAdapter("SELECT * from [transaction]", conn);
+            string role = Session["role"].ToString();
+            string username = Session["username"].ToString();
+            SqlDataAdapter cmd = new SqlDataAdapter();
+            if (role == "a")
+            {
+                SqlCommand command = new SqlCommand("SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum from [transaction]", conn);
+                cmd.SelectCommand = command;
+               // SqlDataAdapter cmd = new SqlDataAdapter("SELECT * from [transaction]", conn);
+            }
+            else
+            {
+                SqlCommand command = new SqlCommand("SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum " +
+                    "FROM [transaction] INNER JOIN [login] on [transaction].[username] = [login].[username] WHERE[login].[username] = '" + username + "'", conn);
+                //                SELECT[employeeName]
+                //,[receivedDate]
+                //      ,[recipient]
+                //      ,[senderParty]
+                //      ,[receivedParty]
+                //      ,[tranNum]
+
+                //                FROM[transaction] INNER JOIN[login] on[transaction].[username] = [login].[username] WHERE[login].[username] = 'huda90'
+
+                // "SELECT (employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum) FROM [transaction] INNER JOIN [login] on [transaction].[username] = [login].[username] WHERE[login].[username] = '"+username+"'"
+                cmd.SelectCommand = command;
+            }
+
             DataTable dt = new DataTable();
             cmd.Fill(dt);
 

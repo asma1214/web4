@@ -8,16 +8,21 @@
                 <h6 class="m-0 font-weight-bold text-primary">المعاملات</h6>
             </div>
             <div class="card-body">
-                <div class="p-5">
                         <%--<label>إسم الموظف</label>--%>
+                <div class="p-5">
+                    <% string role = Session["role"].ToString();
+                        if (role == "a")
+                        {  %>
                     <div class="form-group">
                         <input type="text" class="form-control form-control-user"
                             id="empName" aria-describedby="emailHelp"
                             placeholder="إسم الموظف" runat="server">
                     </div>
                     <hr>
-                    <div class="form-group">
+                    <%} %>
+
                         <%--<label>من تاريخ</label>--%>
+                    <div class="form-group">
                         <input type="date" class="form-control form-control-user"
                             id="fromDate" name="fromDate" placeholder="من تاريخ" runat="server">
                     </div>
