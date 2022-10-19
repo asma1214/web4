@@ -1994,9 +1994,9 @@ textarea.form-control {
 
 .form-group {
     margin-bottom: 1rem;
-    width: 50%;
+    width: 30%;
     display: flex;
-    margin: auto;
+    margin-left: auto;
     padding: 15px;
 }
 
@@ -4563,7 +4563,7 @@ input[type="button"].btn-block {
 }
 
 .card-body {
-  flex: 1 1 auto;
+  /*flex: 1 1 auto;*/
   min-height: 1px;
   padding: 1.25rem;
 }
