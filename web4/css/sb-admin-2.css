@@ -600,6 +600,7 @@ pre code {
   margin-left: -0.75rem;
 }
 
+
 .no-gutters {
   margin-right: 0;
   margin-left: 0;
@@ -6570,8 +6571,14 @@ button.bg-dark:focus {
 
 .border-0 {
   border: 0 !important;
-  font-size: xx-large;
+  
 }
+
+.font-size {
+    font-size: xx-large;
+}
+
+
 
 .border-top-0 {
   border-top: 0 !important;
@@ -7467,6 +7474,9 @@ button.bg-dark:focus {
 
 .float-right {
   float: right !important;
+}
+.color {
+    color: #4e73df;
 }
 
 .float-none {

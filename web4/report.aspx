@@ -2,6 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+            <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
     <body>
         <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -60,7 +62,15 @@
             </div>
 
   
-        <script src="js/showTable.js"></script>
+        <%--<script src="js/showTable.js"></script>--%>
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        <Scripts>
+            <asp:ScriptReference Path="vendor/jquery/jquery.min.js" />
+             <asp:ScriptReference Path="Scripts/bootstrap.bundle.min.js" />
+            <asp:ScriptReference Path="js/showTable.js" />
+
+        </Scripts> 
+    </asp:ScriptManager>
 
 
 

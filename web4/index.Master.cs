@@ -19,17 +19,23 @@ namespace web4
         {
             Page.Header.DataBind();
             DataTable dt = new DataTable();
+            try
+            {
+                SqlDataAdapter cmd = new SqlDataAdapter("SELECT username, name, password, email, phone from [login] WHERE username = '" + Session["username"] + "' ", conn);
+                conn.Open();
+                cmd.Fill(dt);
+                conn.Close();
 
-            SqlDataAdapter cmd = new SqlDataAdapter("SELECT username, name, password, email, phone from [login] WHERE username = '" + Session["username"] +"' ", conn);
-            conn.Open();
-            cmd.Fill(dt);
-            conn.Close();
-
-            username = dt.Rows[0][0].ToString();
-            name = dt.Rows[0][1].ToString();
-            password = dt.Rows[0][2].ToString();
-            email = dt.Rows[0][3].ToString();
-            phone = dt.Rows[0][4].ToString();
+                username = dt.Rows[0][0].ToString();
+                name = dt.Rows[0][1].ToString();
+                password = dt.Rows[0][2].ToString();
+                email = dt.Rows[0][3].ToString();
+                phone = dt.Rows[0][4].ToString();
+            }
+            catch (Exception)
+            {
+                Response.Redirect("login.aspx");
+            }
 
 
         }

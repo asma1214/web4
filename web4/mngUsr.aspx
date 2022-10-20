@@ -37,5 +37,13 @@
                 </div>
             </div>
         </div>
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+        <Scripts>
+            <asp:ScriptReference Path="vendor/jquery/jquery.min.js" />
+             <asp:ScriptReference Path="Scripts/bootstrap.bundle.min.js" />
+            <asp:ScriptReference Path="js/showTable.js" />
+
+        </Scripts> 
+    </asp:ScriptManager>
 
 </asp:Content>

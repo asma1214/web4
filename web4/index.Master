@@ -71,9 +71,11 @@
                     <i class="fas fa-file-alt"></i>
                 </a>
             </li>
-            <% string role = Session["role"].ToString();
-                if (role == "a")
-                {  %>
+            <%try
+                {
+                    string role = Session["role"].ToString();
+                    if (role == "a")
+                    {  %>
 
             <hr class="sidebar-divider">
             <li class="nav-item" style="display= none;">
@@ -113,44 +115,68 @@
                                     src="img/profile1.png">
                             </a>
                         </li>
+                        <%}
+                            catch (Exception)
+                            {
+                                Response.Redirect("login.aspx");
+                            }%>
 
                        <li class="nav-item dropdown no-arrow">
-                           <%--<asp:Button type="button" ID="submit" class="nav-link dropdown-toggle" 
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                               OnClick="submit_Click" Text="submit" runat="server" />--%>
+                     
                             <a class="nav-link dropdown-toggle" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onserverclick="submit_Click" runat="server">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" >Logout</span> 
                                 <i class="fas fa-sign-out-alt"></i>
                             </a>
                         </li>
-                            <!-- Dropdown - User Information -->
-                            <%--<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>--%>
 
                     </ul>
 
                 </nav>
 
                 <!-- Button trigger modal -->
+    <%--<%--            <%--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--%>
+<%--<div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">الملف الشخصي</h1>
+
+      </div>
+        <div class="modal-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 .ms-auto">
+                        <label for="recipient-name" class="col-form-label">:إسم المستخدم</label>
+                        <input style="width: 70%" type="text" class="form-control" id="username" name="username" value="<%= username %>">
+
+                    </div>
+                    <div class="col-md-12 .ms-auto">
+                        <input style="width: 70%" type="text" class="form-control" id="username" name="username" value="<%= username %>">
+                    </div>--%>
+              <%--      <div class="col-md-6">
+                        <label for="recipient-name" class="col-form-label">:الإسم</label>
+                        <input style="width: 70%" type="text" class="form-control" id="empName" name="empName" value="<%= name %>">
+
+                    </div>
+                    <div class="col-md-6 .ms-auto">
+                        <label for="recipient-name" class="col-form-label">:رقم الهاتف المحمول</label>
+                        <input type="text" class="form-control" id="phone" value="<%= phone %>" disabled>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="recipient-name" class="col-form-label">:البريد الإلكتروني</label>
+                        <input type="email" class="form-control" id="email" value="<%= email %>" disabled>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    </div>
+                  --%>
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -158,10 +184,8 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="staticBackdropLabel">الملف الشخصي</h1>
-          <%--<button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true" aria-label="Close">&times;</button>--%>
 
-        <button type="button" class="btn-close border-0 bg-transparent font-s" data-bs-dismiss="modal"  aria-hidden="true" >&times</button>
-<%--            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>--%>
+        <button type="button" class="btn-close border-0 bg-transparent font-size" data-bs-dismiss="modal"  aria-hidden="true" >&times</button>
 
       </div>
         
@@ -180,6 +204,18 @@
 
           <label for="recipient-name" class="col-form-label">:كلمة المرور</label>
         <input type="password" class="form-control" id="pass" value="<%= password %>" disabled>
+        <button type="button" id="changePass" class="btn-close border-0 float-right bg-transparent color" data-bs-dismiss="modal"  aria-hidden="true" >تغيير كلمة المرور</button>
+          <div id="newPass" class="modal-body">
+              <label for="recipient-name" class="col-form-label">:كلمة المرور الحالية</label>
+        <input type="text" class="form-control" id="phone" value="<%= phone %>" disabled>
+
+              <label for="recipient-name" class="col-form-label">:كلمة المرورالجديدة</label>
+        <input type="text" class="form-control" id="phone" value="<%= phone %>" disabled>
+
+              <label for="recipient-name" class="col-form-label">:تأكيد كلمة المرور</label>
+        <input type="text" class="form-control" id="phone" value="<%= phone %>" disabled>
+
+          </div>
 
       </div>
       <div class="modal-footer">
@@ -205,6 +241,19 @@
             </footer>
             </div>
         </div>
+        <script>
+
+            const button = document.getElementById('changePass')
+            const p = document.querySelector('p')
+            button.addEventListener('click', () => {
+                if (p.style.display === 'none') {
+                    p.style.display = 'block'
+                } else {
+                    p.style.display = 'none'
+                }
+            })
+
+        </script>
     </form>
 
 
