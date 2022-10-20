@@ -23,7 +23,7 @@
 <body>
     <form id="form1" runat="server">
   <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
+<%--  <header id="header" class="header fixed-top d-flex align-items-center">--%>
 
     <%--<div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
@@ -33,15 +33,15 @@
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->--%>
 
-    <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+    <div class="search-bar" hidden>
+      <form >
+       <%-- <input type="text" name="query" placeholder="Search" title="Enter search keyword">
+        <button type="submit" title="Search"><i class="bi bi-search"></i></button>--%>
       </form>
     </div><!-- End Search Bar -->
 
-    <nav class="header-nav ms-auto">
-      <ul class="d-flex align-items-center">
+    <%--<nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">--%>
 
         <%--<li class="nav-item d-block d-lg-none">
           <a class="nav-link nav-icon search-bar-toggle " href="#">
@@ -49,14 +49,14 @@
           </a>
         </li><!-- End Search Icon-->--%>
 
-        <li class="nav-item dropdown">
+        <%--<li class="nav-item dropdown">--%>
 
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+          <%--<a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-bell"></i>
             <span class="badge bg-primary badge-number">4</span>
-          </a><!-- End Notification Icon -->
+          </a><!-- End Notification Icon -->--%>
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+         <%-- <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
             <li class="dropdown-header">
               You have 4 new notifications
               <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
@@ -120,11 +120,11 @@
               <a href="#">Show all notifications</a>
             </li>
 
-          </ul><!-- End Notification Dropdown Items -->
+          </ul><!-- End Notification Dropdown Items -->--%>
 
-        </li><!-- End Notification Nav -->
+        <%--</li><!-- End Notification Nav -->--%>
 
-        <li class="nav-item dropdown">
+       <%-- <li class="nav-item dropdown">
 
           <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
             <i class="bi bi-chat-left-text"></i>
@@ -188,9 +188,9 @@
 
           </ul><!-- End Messages Dropdown Items -->
 
-        </li><!-- End Messages Nav -->
+        </li><!-- End Messages Nav -->--%>
 
-        <li class="nav-item dropdown pe-3">
+        <%--<li class="nav-item dropdown pe-3">
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
@@ -244,15 +244,15 @@
             </li>
 
           </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
+        </li><!-- End Profile Nav -->--%>
 
-      </ul>
+     <%-- </ul>
     </nav><!-- End Icons Navigation -->
 
-  </header><!-- End Header -->
+  </header><!-- End Header -->--%>
 
   <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
+  <%--<aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
@@ -486,7 +486,7 @@
 
     </ul>
 
-  </aside><!-- End Sidebar-->
+  </aside><!-- End Sidebar-->--%>
 
   <main id="main" class="main">
 
@@ -594,11 +594,10 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Profile Edit Form -->
-                  <form>
+                  <%--<form>--%>
                     <div class="row mb-3">
                       <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                       <div class="col-md-8 col-lg-9">
-                        <img src="assets/img/profile-img.jpg" alt="Profile">
                         <div class="pt-2">
                           <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
                           <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
@@ -693,7 +692,7 @@
                     <div class="text-center">
                       <button type="submit" class="btn btn-primary">Save Changes</button>
                     </div>
-                  </form><!-- End Profile Edit Form -->
+                  <%--</form><!-- End Profile Edit Form -->--%>
 
                 </div>
 

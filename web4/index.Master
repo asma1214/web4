@@ -105,8 +105,8 @@
 
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="profile.aspx" role="button"
+                        <li class="nav-item dropdown no-arrow" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                            <a class="nav-link dropdown-toggle" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%=Session["name"] %></span>
                                 <img class="img-profile rounded-circle"
@@ -149,6 +149,46 @@
                     </ul>
 
                 </nav>
+
+                <!-- Button trigger modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">الملف الشخصي</h1>
+          <%--<button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true" aria-label="Close">&times;</button>--%>
+
+        <button type="button" class="btn-close border-0 bg-transparent font-s" data-bs-dismiss="modal"  aria-hidden="true" >&times</button>
+<%--            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>--%>
+
+      </div>
+        
+      <div class="modal-body">
+          <label for="recipient-name" class="col-form-label">:الإسم</label>
+        <input type="text" class="form-control" id="empName" name="empName" value="<%= name %>">
+
+          <label for="recipient-name" class="col-form-label">:إسم المستخدم</label>
+        <input type="text" class="form-control" id="username" name="username" value="<%= username %>">
+
+          <label for="recipient-name" class="col-form-label">:البريد الإلكتروني</label>
+        <input type="email" class="form-control" id="email" value="<%= email %>" disabled>
+
+          <label for="recipient-name" class="col-form-label">:رقم الهاتف المحمول</label>
+        <input type="text" class="form-control" id="phone" value="<%= phone %>" disabled>
+
+          <label for="recipient-name" class="col-form-label">:كلمة المرور</label>
+        <input type="password" class="form-control" id="pass" value="<%= password %>" disabled>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+        <button type="button" class="btn btn-primary">حفظ</button>
+      </div>
+    </div>
+  </div>
+</div>
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
