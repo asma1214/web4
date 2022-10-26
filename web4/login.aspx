@@ -80,7 +80,7 @@
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Password</label>
                         <%--<asp:TextBox ID="txtAge" runat="server"></asp:TextBox>--%>
-                      <input type="password" name="password" class="form-control" id="yourPassword" runat="server" required>
+                      <input type="password" name="password" class="form-control" id="yourPassword" runat="server" required />
                       <div class="invalid-feedback">Please enter your password!</div>
                     </div>                        
                       <div class="col-12">

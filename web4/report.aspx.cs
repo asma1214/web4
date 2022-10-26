@@ -38,17 +38,49 @@ namespace web4
                         {
                             errMsg = "نطاق تاريخ غير صالح";
                         }
-                        SqlDataAdapter cmd = new SqlDataAdapter("SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum from [transaction] WHERE receivedDate BETWEEN '" + fromDate.Value + "' AND '" + toDate.Value + "' AND employeeName= '" + empName.Value + "'", conn);
+                        string sql = "SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum from [transaction] " +
+                            "WHERE receivedDate BETWEEN @fromDate AND @toDate AND employeeName= @empName";
+                        //--- For SQL Injuction ---
+                        SqlCommand command = new SqlCommand(sql,conn);
+                        SqlParameter[] param = new SqlParameter[3];
+                        param[0] = new SqlParameter("@fromDate", fromDate.Value);
+                        param[1] = new SqlParameter("@toDate", toDate.Value);
+                        param[2] = new SqlParameter("@empName", empName.Value);
+                        command.Parameters.Add(param[0]);
+                        command.Parameters.Add(param[1]);
+                        command.Parameters.Add(param[2]);
                         conn.Open();
-                        cmd.Fill(dt);
+                        dt.Load(command.ExecuteReader());
                         conn.Close();
+                        //command.ExecuteNonQuery();
+                        //SqlDataAdapter command1 = new SqlDataAdapter(sql, conn);
+                        //command1.GetFillParameters();
+
+
+
+                        //SqlDataAdapter cmd = new SqlDataAdapter("SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum from [transaction] WHERE receivedDate BETWEEN '" 
+                        //    + fromDate.Value + "' AND '" + toDate.Value + "' AND employeeName= '" + empName.Value + "'", conn);
+                        //conn.Open();
+                        ////cmd.Fill(dt);
+                        //conn.Close();
                     }
                     else if (fromDate.Value.Length == 0 && toDate.Value.Length == 0)
                     {
-                        SqlDataAdapter cmd = new SqlDataAdapter("SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum from [transaction] WHERE employeeName= '" + empName.Value + "'", conn);
+                        string sql = "SELECT employeeName, receivedDate, recipient, senderParty, " +
+                            "receivedParty, tranNum from [transaction] WHERE employeeName= @empName";
+                        SqlCommand command = new SqlCommand(sql, conn);
+                        SqlParameter[] param = new SqlParameter[1];
+                        param[0] = new SqlParameter("@empName", empName.Value);
+                        command.Parameters.Add (param[0]);
                         conn.Open();
-                        cmd.Fill(dt);
+                        dt.Load(command.ExecuteReader());
                         conn.Close();
+
+
+                        //SqlDataAdapter cmd = new SqlDataAdapter("SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum from [transaction] WHERE employeeName= '" + empName.Value + "'", conn);
+                        //conn.Open();
+                        //cmd.Fill(dt);
+                        //conn.Close();
                     }
 
                     else if (fromDate.Value.Length == 0 || toDate.Value.Length == 0)
@@ -72,6 +104,19 @@ namespace web4
                         else
                         {
 
+                            string sql = "SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, " +
+                                "tranNum from [transaction] WHERE receivedDate BETWEEN @fromDate AND @toDate";
+                            SqlCommand command = new SqlCommand(sql, conn);
+                            SqlParameter[] param = new SqlParameter[2];
+                            param[0] = new SqlParameter("@fromDate", fromDate.Value);
+                            param[1] = new SqlParameter("@toDate", toDate.Value);
+                            command.Parameters.Add(param[0]);
+                            command.Parameters.Add(param[1]);
+                            conn.Open();
+                            dt.Load(command.ExecuteReader());
+                            conn.Close();
+
+
                             SqlDataAdapter cmd = new SqlDataAdapter("SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum from [transaction] WHERE receivedDate BETWEEN '" + fromDate.Value + "' AND '" + toDate.Value + "'", conn);
                             conn.Open();
                             cmd.Fill(dt);
@@ -91,13 +136,28 @@ namespace web4
                 {
                     errMsg = "نطاق تاريخ غير صالح";
                 }
-                
-               
-                    SqlDataAdapter cmd = new SqlDataAdapter("SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum" +
-                        " from [transaction] WHERE receivedDate BETWEEN '" + fromDate.Value + "' AND '" + toDate.Value + "' AND username= '" +username + "'", conn);
-                    conn.Open();
-                    cmd.Fill(dt);
-                    conn.Close();
+
+                string sql = "SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum" +
+                        " from [transaction] WHERE receivedDate BETWEEN @fromDate AND @toDate AND username= @username";
+                SqlCommand command = new SqlCommand(sql, conn);
+                SqlParameter[] param = new SqlParameter[3];
+                param[0] = new SqlParameter("@fromDate", fromDate.Value);
+                param[1] = new SqlParameter("@toDate", toDate.Value);
+                param[2] = new SqlParameter("@username", username);
+                command.Parameters.Add(param[0]);
+                command.Parameters.Add(param[1]);
+                command.Parameters.Add(param[2]);
+                conn.Open();
+                dt.Load(command.ExecuteReader());
+                conn.Close();
+
+
+
+                //SqlDataAdapter cmd = new SqlDataAdapter("SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum" +
+                //        " from [transaction] WHERE receivedDate BETWEEN '" + fromDate.Value + "' AND '" + toDate.Value + "' AND username= '" +username + "'", conn);
+                //    conn.Open();
+                //    cmd.Fill(dt);
+                //    conn.Close();
                 
 
             }

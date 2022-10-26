@@ -22,6 +22,8 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.css" rel="stylesheet"/>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 
 
@@ -136,7 +138,7 @@
 
                 <!-- Button trigger modal -->
     <%--<%--            <%--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--%>
-<%--<div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -145,86 +147,73 @@
       </div>
         <div class="modal-body">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12 .ms-auto">
-                        <label for="recipient-name" class="col-form-label">:إسم المستخدم</label>
-                        <input style="width: 70%" type="text" class="form-control" id="username" name="username" value="<%= username %>">
-
-                    </div>
-                    <div class="col-md-12 .ms-auto">
-                        <input style="width: 70%" type="text" class="form-control" id="username" name="username" value="<%= username %>">
-                    </div>--%>
-              <%--      <div class="col-md-6">
-                        <label for="recipient-name" class="col-form-label">:الإسم</label>
-                        <input style="width: 70%" type="text" class="form-control" id="empName" name="empName" value="<%= name %>">
-
-                    </div>
-                    <div class="col-md-6 .ms-auto">
-                        <label for="recipient-name" class="col-form-label">:رقم الهاتف المحمول</label>
-                        <input type="text" class="form-control" id="phone" value="<%= phone %>" disabled>
+                <div class="row flex-row-reverse">
+                    <div class="col-md-6">
+                        <label for="empName" class="labels">:الإسم</label>
+                        <input type="text" class="form-control" id="empName" name="empName" value="<%= name %>">
                     </div>
 
                     <div class="col-md-6">
-                        <label for="recipient-name" class="col-form-label">:البريد الإلكتروني</label>
+                        <label for="username" class="labels">:اسم المستخدم</label>
+                        <input type="text" class="form-control" id="username" name="username" value="<%= username %>">
+                    </div>
+
+
+                    <div class="col-md-6 mt-2">
+                        <label for="email" class="labels">:البريد الإلكتروني</label>
                         <input type="email" class="form-control" id="email" value="<%= email %>" disabled>
+                    </div>
+
+                    <div class="col-md-6 mt-2">
+                        <label for="phone" class="labels">:رقم الهاتف المحمول</label>
+                        <input type="text" class="form-control" id="phone" value="<%= phone %>" disabled>
+                    </div>
+
+                    <div class="col-md-12 mt-2">
+                        <%--<button type="button" id="changePass" class="btn-close border-0 float-right bg-transparent color" 
+                            aria-hidden="true" onserverclick="newPassword" OnClientClick="return false;" runat="server">تغيير كلمة المرور</button>--%>
+                        <asp:Button ID="changePassword" class="btn-close border-0 float-right bg-transparent color"
+                            Text="تغيير كلمة المرور" OnClientClick="return false;" runat="server" />
+
+                    </div>
+                    
+                    <div class="col-md-12 mt-2" id="passDiv"  style="display: none;">
+                        <label for="currentPass" class="col-form-label">:كلمة المرور الحالية</label>
+                        <input type="text" class="form-control" name="currentPass" id="currentPass">
+
+                        <label for="newPass" class="col-form-label">:كلمة المرور الجديدة</label>
+                        <input type="text" class="form-control" name="newPass" id="newPass">
+
+                        <label for="validPass" class="col-form-label">:تأكيد كلمة المرور</label>
+                        <input type="text" class="form-control"name="validPass" id="validPass">
+
                     </div>
 
 
                 </div>
             </div>
         </div>
+        <div class="modal-footer mt-4">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+            <%--<button type="button" class="btn btn-primary" onserverclick="change" runat="server">حفظ</button>--%>
+               <asp:Button ID="save" class="btn btn-primary"
+                            Text="حفظ" OnClick="change" runat="server" />
+            <%if (flag == false)
+                { %>
+            <script>
+                Swal.fire({
+                    icon:'<%= icon %>',
+                        title: '<%= title %>',
+                        text: '<%= msg %>',
+                    });
+            </script>
+            <%} %>
+        </div>
       </div>
     </div>
     </div>
-                  --%>
+                  
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">الملف الشخصي</h1>
-
-        <button type="button" class="btn-close border-0 bg-transparent font-size" data-bs-dismiss="modal"  aria-hidden="true" >&times</button>
-
-      </div>
-        
-      <div class="modal-body">
-          <label for="recipient-name" class="col-form-label">:الإسم</label>
-        <input type="text" class="form-control" id="empName" name="empName" value="<%= name %>">
-
-          <label for="recipient-name" class="col-form-label">:إسم المستخدم</label>
-        <input type="text" class="form-control" id="username" name="username" value="<%= username %>">
-
-          <label for="recipient-name" class="col-form-label">:البريد الإلكتروني</label>
-        <input type="email" class="form-control" id="email" value="<%= email %>" disabled>
-
-          <label for="recipient-name" class="col-form-label">:رقم الهاتف المحمول</label>
-        <input type="text" class="form-control" id="phone" value="<%= phone %>" disabled>
-
-          <label for="recipient-name" class="col-form-label">:كلمة المرور</label>
-        <input type="password" class="form-control" id="pass" value="<%= password %>" disabled>
-        <button type="button" id="changePass" class="btn-close border-0 float-right bg-transparent color" data-bs-dismiss="modal"  aria-hidden="true" >تغيير كلمة المرور</button>
-          <div id="newPass" class="modal-body">
-              <label for="recipient-name" class="col-form-label">:كلمة المرور الحالية</label>
-        <input type="text" class="form-control" id="phone" value="<%= phone %>" disabled>
-
-              <label for="recipient-name" class="col-form-label">:كلمة المرورالجديدة</label>
-        <input type="text" class="form-control" id="phone" value="<%= phone %>" disabled>
-
-              <label for="recipient-name" class="col-form-label">:تأكيد كلمة المرور</label>
-        <input type="text" class="form-control" id="phone" value="<%= phone %>" disabled>
-
-          </div>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
-        <button type="button" class="btn btn-primary">حفظ</button>
-      </div>
-    </div>
-  </div>
-</div>
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
@@ -243,8 +232,8 @@
         </div>
         <script>
 
-            const button = document.getElementById('changePass')
-            const p = document.querySelector('p')
+            const button = document.getElementById('changePassword')
+            const p = document.getElementById('passDiv')
             button.addEventListener('click', () => {
                 if (p.style.display === 'none') {
                     p.style.display = 'block'

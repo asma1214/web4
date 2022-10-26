@@ -5,12 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
-using System.Xml.Linq;
-using System.Drawing;
-using System.Data;
-using System.Windows;
-using System.Configuration;
-using System.Security.Cryptography.X509Certificates;
 
 namespace web4
 {
@@ -45,12 +39,17 @@ namespace web4
             role = reader["role"].ToString();
 
             conn.Close();
-            if(username == yourUsername.Value && password == yourPassword.Value)
+            bool varify = BCrypt.Net.BCrypt.Verify(yourPassword.Value, password);
+            if (username == yourUsername.Value)
             {
+                if (varify)
+                {
                 Session["name"] = name;
                 Session["role"] = role;
                 Session["username"] = username;
                 Response.Redirect("userSit.aspx");
+
+                }
 
 
             }

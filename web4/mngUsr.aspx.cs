@@ -32,17 +32,27 @@ namespace web4
             command = new SqlCommand(sql, conn);
             adapter.InsertCommand = new SqlCommand(sql, conn);
             int a = adapter.InsertCommand.ExecuteNonQuery();
-            if (a == 0) { 
+            if (a == 0) {
                 msg = "لم يتم إضافة المستخدم بنجاح";
                 icon = "error";
                 title = "!حدث خطأ";
 
-        }
+
+            }
             else
             {
-                msg = "تم إضافة المستخدم بنجاح";
-                icon = "success";
-                title = "!تم بنجاح";
+                if ((String.IsNullOrEmpty(username.Value)) || (String.IsNullOrEmpty(empName.Value)))
+                {
+                    msg = "يجب عليك تعبئة جميع الحقول";
+                    icon = "error";
+                    title = "!حدث خطأ";
+                }
+                else
+                {
+                    msg = "تم إضافة المستخدم بنجاح";
+                    icon = "success";
+                    title = "!تم بنجاح";
+                }
 
             }
                 

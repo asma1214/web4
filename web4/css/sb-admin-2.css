@@ -5814,14 +5814,19 @@ a.close.disabled {
   opacity: 0.5;
 }
 
+.labels{
+    width: 100%;
+    text-align:right;
+}
+
 .modal-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 1rem 1rem;
-  border-bottom: 1px solid #e3e6f0;
-  border-top-left-radius: calc(0.3rem - 1px);
-  border-top-right-radius: calc(0.3rem - 1px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #e3e6f0;
+    border-top-left-radius: calc(0.3rem - 1px);
+    border-top-right-radius: calc(0.3rem - 1px);
 }
 
 .modal-header .close {
