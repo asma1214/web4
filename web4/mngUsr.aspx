@@ -12,15 +12,16 @@
             <div class="p-5">
                  <div class="form-group">
                         <input type="text" class="form-control form-control-user"
+                            id="email" aria-describedby="emailHelp"
+                            placeholder="البريد الإلكتروني" runat="server">
+                    </div>
+                <div class="form-group">
+                        <input type="text" class="form-control form-control-user"
                             id="empName" aria-describedby="emailHelp"
                             placeholder="إسم الموظف" runat="server">
                     </div>
 
-                 <div class="form-group">
-                        <input type="text" class="form-control form-control-user"
-                            id="username" aria-describedby="emailHelp"
-                            placeholder="إسم المستخدم" runat="server">
-                    </div>
+                 
                 <div class="form-group">
                 <asp:Button type="button" ID="submit" class="btn btn-primary w-100" OnClick="submit_Click" Text="submit" runat="server" />
                     </div>

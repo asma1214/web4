@@ -12,7 +12,7 @@ namespace web4
     public partial class WebForm2 : System.Web.UI.Page
     {
         public string errMsg;
-        SqlConnection conn = new SqlConnection("Data Source=ASMA_BADR\\DBWEB; Initial Catalog=webDB; User Id=asmaBadr; Password=webDB1234; Integrated Security=false");
+        SqlConnection conn = new SqlConnection("Data Source=DESKTOP-63JE2M4\\WEBDB; Initial Catalog=webDB; User Id=sa; Password=webDB1234; Integrated Security=false");
         DataTable dt = new DataTable();
         string date = "dd/MM/yyyy";
 
@@ -130,7 +130,7 @@ namespace web4
             }
             else
             {
-                string username = Session["username"].ToString();
+                string email = Session["email"].ToString();
                 int result = DateTime.Compare(DateTime.Parse(fromDate.Value), DateTime.Parse(toDate.Value));
                 if (result > 0)
                 {
@@ -138,12 +138,12 @@ namespace web4
                 }
 
                 string sql = "SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum" +
-                        " from [transaction] WHERE receivedDate BETWEEN @fromDate AND @toDate AND username= @username";
+                        " from [transaction] WHERE receivedDate BETWEEN @fromDate AND @toDate AND email='" + Session["email"] + "'";
                 SqlCommand command = new SqlCommand(sql, conn);
                 SqlParameter[] param = new SqlParameter[3];
                 param[0] = new SqlParameter("@fromDate", fromDate.Value);
                 param[1] = new SqlParameter("@toDate", toDate.Value);
-                param[2] = new SqlParameter("@username", username);
+                param[2] = new SqlParameter("@email", email);
                 command.Parameters.Add(param[0]);
                 command.Parameters.Add(param[1]);
                 command.Parameters.Add(param[2]);

@@ -21,7 +21,7 @@ namespace web4
             //string securepass = FormsAuthentication.HashPasswordForStoringInConfigFile(TextBox2.Text, "SHA256");
             string securepass = BCrypt.Net.BCrypt.HashPassword(TextBox2.Text);
             Label1.Text = "Your HashPassword is-" + securepass;
-            bool verify = BCrypt.Net.BCrypt.Verify(TextBox2.Text, TextBox1.Text);
+            //bool verify = BCrypt.Net.BCrypt.Verify(TextBox2.Text, TextBox1.Text);
             Label2.ForeColor = System.Drawing.Color.ForestGreen;
             Label1.ForeColor = System.Drawing.Color.ForestGreen;
 

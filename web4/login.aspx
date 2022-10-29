@@ -67,12 +67,21 @@
 
                   <form class="row g-3 needs-validation" name="login" novalidate runat="server"> 
 
-                    <div class="col-12">
+                    <%--<div class="col-12">
                         <label for="yourUsername" class="form-label">Username</label>
                         <div class="input-group has-validation">
                             <span class="input-group-text" id="inputGroupPrepend">@</span>
                             <input type="text" name="username" class="form-control" id="yourUsername" runat="server" required>
                             <div class="invalid-feedback">Please enter your username.</div>
+                        </div>
+                    </div>--%>
+
+                      <div class="col-12">
+                        <label for="email" class="form-label">Email</label>
+                        <div class="input-group has-validation">
+                            <span class="input-group-text" id="inputGroupPrepend">@</span>
+                            <input type="text" name="email" class="form-control" id="yourEmail" runat="server" required="required" />
+                            <div class="invalid-feedback">Please enter your email</div>
                         </div>
                     </div>
                       
@@ -80,7 +89,7 @@
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Password</label>
                         <%--<asp:TextBox ID="txtAge" runat="server"></asp:TextBox>--%>
-                      <input type="password" name="password" class="form-control" id="yourPassword" runat="server" required />
+                      <input type="password" name="password" class="form-control" id="yourPassword" runat="server" required="required" />
                       <div class="invalid-feedback">Please enter your password!</div>
                     </div>                        
                       <div class="col-12">

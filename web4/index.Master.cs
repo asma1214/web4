@@ -14,8 +14,8 @@ namespace web4
 {
     public partial class index1 : System.Web.UI.MasterPage
     {
-        SqlConnection conn = new SqlConnection("Data Source=ASMA_BADR\\DBWEB; Initial Catalog=webDB; User Id=asmaBadr; Password=webDB1234; Integrated Security=false; MultipleActiveResultSets=true");
-        public string username, password, name, email, phone;
+        SqlConnection conn = new SqlConnection("Data Source=DESKTOP-63JE2M4\\WEBDB; Initial Catalog=webDB; User Id=sa; Password=webDB1234; Integrated Security=false; MultipleActiveResultSets=true");
+        public string password, name, email, phone;
         public bool flag = true;
         public string msg = "";
         public string icon;
@@ -34,18 +34,18 @@ namespace web4
             DataTable dt = new DataTable();
             try
             {
-                using (SqlDataAdapter cmd = new SqlDataAdapter("SELECT username, name, password, email, phone from [login] WHERE username = '" + Session["username"] + "' ", conn))
+                using (SqlDataAdapter cmd = new SqlDataAdapter("SELECT name, password, email, phone from [login] WHERE email = '" + Session["email"] + "' ", conn))
                 {
 
                     cmd.Fill(dt);
                 }
 
 
-                username = dt.Rows[0][0].ToString();
-                name = dt.Rows[0][1].ToString();
-                password = dt.Rows[0][2].ToString();
-                email = dt.Rows[0][3].ToString();
-                phone = dt.Rows[0][4].ToString();
+               // username = dt.Rows[0][0].ToString();
+                name = dt.Rows[0][0].ToString();
+                password = dt.Rows[0][1].ToString();
+                email = dt.Rows[0][2].ToString();
+                phone = dt.Rows[0][3].ToString();
             }
             catch (Exception)
             {
@@ -67,7 +67,8 @@ namespace web4
         protected void change(object sender, EventArgs e)
         {
             string empname = Request.Form["empName"];
-            string emusr = Request.Form["username"];
+            //string emusr = Request.Form["username"];
+            string email = Request.Form["email"];
             string currentPass = Request.Form["currentPass"];
             string newPass = Request.Form["newPass"];
             string validPass = Request.Form["validPass"];
@@ -79,11 +80,11 @@ namespace web4
             {
                 if ((String.IsNullOrEmpty(currentPass)) == false && (String.IsNullOrEmpty(validPass) == false))
                 {
-                    sql = "SELECT password FROM [login] WHERE username = @username";
+                    sql = "SELECT password FROM [login] WHERE email = @email";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         SqlParameter[] param = new SqlParameter[1];
-                        param[0] = new SqlParameter("@emusr", Session["username"]);
+                        param[0] = new SqlParameter("@email", Session["email"]);
                         cmd.Parameters.Add(param[0]);
                         SqlDataReader reader = cmd.ExecuteReader();
                         reader.Read();
@@ -96,19 +97,17 @@ namespace web4
                         {
                             string myNewHash = BCrypt.Net.BCrypt.ValidateAndReplacePassword(currentPass, pass, newPass);
 
-                            sql = " UPDATE [login] SET username = @emusr ,name = @empname , password = @newPass " +
-                                "WHERE username = @Session";
+                            sql = " UPDATE [login] SET name = @empname , password = @newPass " +
+                                "WHERE email = @Session";
                             using (SqlCommand cmd = new SqlCommand(sql, conn))
                             {
-                                SqlParameter[] param = new SqlParameter[4];
-                                param[0] = new SqlParameter("@emusr", emusr);
-                                param[1] = new SqlParameter("@empname", empname);
-                                param[2] = new SqlParameter("@newPass", myNewHash);
-                                param[3] = new SqlParameter("@Session", Session["username"]);
+                                SqlParameter[] param = new SqlParameter[3];
+                                param[0] = new SqlParameter("@empname", empname);
+                                param[1] = new SqlParameter("@newPass", myNewHash);
+                                param[2] = new SqlParameter("@Session", Session["email"]);
                                 cmd.Parameters.Add(param[0]);
                                 cmd.Parameters.Add(param[1]);
                                 cmd.Parameters.Add(param[2]);
-                                cmd.Parameters.Add(param[3]);
                                 cmd.ExecuteReader();
                                 if (conn.State == ConnectionState.Open)
                                     conn.Close();
@@ -119,7 +118,7 @@ namespace web4
             }
             else
             {
-                sql = "UPDATE [login] SET username = @emusr , name = @empname WHERE username = @username";
+                sql = "UPDATE [login] SET name = @empname WHERE email = @email";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.ExecuteReader();

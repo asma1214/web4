@@ -153,15 +153,15 @@
                         <input type="text" class="form-control" id="empName" name="empName" value="<%= name %>">
                     </div>
 
-                    <div class="col-md-6">
+                    <%--<div class="col-md-6">
                         <label for="username" class="labels">:اسم المستخدم</label>
                         <input type="text" class="form-control" id="username" name="username" value="<%= username %>">
-                    </div>
+                    </div>--%>
 
 
                     <div class="col-md-6 mt-2">
                         <label for="email" class="labels">:البريد الإلكتروني</label>
-                        <input type="email" class="form-control" id="email" value="<%= email %>" disabled>
+                        <input type="email" class="form-control" id="email" name="email" value="<%= email %>" disabled>
                     </div>
 
                     <div class="col-md-6 mt-2">
