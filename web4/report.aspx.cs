@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace web4
 {
     public partial class WebForm2 : System.Web.UI.Page
     {
         public string errMsg;
-        SqlConnection conn = new SqlConnection("Data Source=DESKTOP-63JE2M4\\WEBDB; Initial Catalog=webDB; User Id=sa; Password=webDB1234; Integrated Security=false");
+        //SqlConnection conn = new SqlConnection("Data Source=DESKTOP-63JE2M4\\WEBDB; Initial Catalog=webDB; User Id=sa; Password=webDB1234; Integrated Security=false");
+        SqlConnection conn = new SqlConnection("Data Source=ASMA_BADR\\DBWEB; Initial Catalog=webDB; User Id=asmaBadr; Password=webDB1234; Integrated Security=false");
+
         DataTable dt = new DataTable();
         string date = "dd/MM/yyyy";
 
@@ -51,19 +49,14 @@ namespace web4
                         command.Parameters.Add(param[2]);
                         conn.Open();
                         dt.Load(command.ExecuteReader());
+                        if (dt != null)
+                            if (dt.Rows.Count == 0)
+                            {
+                                errMsg = "لا يوجد بيانات وفقًا لمدخلات البحث";
+                            }
                         conn.Close();
-                        //command.ExecuteNonQuery();
-                        //SqlDataAdapter command1 = new SqlDataAdapter(sql, conn);
-                        //command1.GetFillParameters();
-
-
-
-                        //SqlDataAdapter cmd = new SqlDataAdapter("SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum from [transaction] WHERE receivedDate BETWEEN '" 
-                        //    + fromDate.Value + "' AND '" + toDate.Value + "' AND employeeName= '" + empName.Value + "'", conn);
-                        //conn.Open();
-                        ////cmd.Fill(dt);
-                        //conn.Close();
-                    }
+                        
+                    }   
                     else if (fromDate.Value.Length == 0 && toDate.Value.Length == 0)
                     {
                         string sql = "SELECT employeeName, receivedDate, recipient, senderParty, " +
@@ -74,13 +67,15 @@ namespace web4
                         command.Parameters.Add (param[0]);
                         conn.Open();
                         dt.Load(command.ExecuteReader());
+                        if (dt != null)
+                            if (dt.Rows.Count == 0)
+                            {
+                                errMsg = "لا يوجد بيانات وفقًا لمدخلات البحث";
+                            }
                         conn.Close();
 
 
-                        //SqlDataAdapter cmd = new SqlDataAdapter("SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum from [transaction] WHERE employeeName= '" + empName.Value + "'", conn);
-                        //conn.Open();
-                        //cmd.Fill(dt);
-                        //conn.Close();
+                       
                     }
 
                     else if (fromDate.Value.Length == 0 || toDate.Value.Length == 0)
@@ -114,6 +109,11 @@ namespace web4
                             command.Parameters.Add(param[1]);
                             conn.Open();
                             dt.Load(command.ExecuteReader());
+                            if (dt != null)
+                                if (dt.Rows.Count == 0)
+                                {
+                                    errMsg = "لا يوجد بيانات وفقًا لمدخلات البحث";
+                                }
                             conn.Close();
 
 
@@ -130,35 +130,42 @@ namespace web4
             }
             else
             {
-                string email = Session["email"].ToString();
-                int result = DateTime.Compare(DateTime.Parse(fromDate.Value), DateTime.Parse(toDate.Value));
-                if (result > 0)
+                try
                 {
-                    errMsg = "نطاق تاريخ غير صالح";
+
+                    if(fromDate.Value.Length == 0 || toDate.Value.Length == 0)
+                        errMsg = "نطاق تاريخ غير صالح";
+
+                    string email = Session["email"].ToString();
+                    int result = DateTime.Compare(DateTime.Parse(fromDate.Value), DateTime.Parse(toDate.Value));
+                    if (result > 0)
+                    {
+                        errMsg = "نطاق تاريخ غير صالح";
+                    }
+
+                    string sql = "SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum" +
+                            " from [transaction] WHERE receivedDate BETWEEN @fromDate AND @toDate AND email='" + Session["email"] + "'";
+                    SqlCommand command = new SqlCommand(sql, conn);
+                    SqlParameter[] param = new SqlParameter[3];
+                    param[0] = new SqlParameter("@fromDate", fromDate.Value);
+                    param[1] = new SqlParameter("@toDate", toDate.Value);
+                    param[2] = new SqlParameter("@email", email);
+                    command.Parameters.Add(param[0]);
+                    command.Parameters.Add(param[1]);
+                    command.Parameters.Add(param[2]);
+                    conn.Open();
+                    dt.Load(command.ExecuteReader());
+                    if(dt != null)
+                        if(dt.Rows.Count == 0)
+                    {
+                        errMsg = "لا يوجد بيانات وفقًا لمدخلات البحث";
+                    }
+                    conn.Close();
                 }
-
-                string sql = "SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum" +
-                        " from [transaction] WHERE receivedDate BETWEEN @fromDate AND @toDate AND email='" + Session["email"] + "'";
-                SqlCommand command = new SqlCommand(sql, conn);
-                SqlParameter[] param = new SqlParameter[3];
-                param[0] = new SqlParameter("@fromDate", fromDate.Value);
-                param[1] = new SqlParameter("@toDate", toDate.Value);
-                param[2] = new SqlParameter("@email", email);
-                command.Parameters.Add(param[0]);
-                command.Parameters.Add(param[1]);
-                command.Parameters.Add(param[2]);
-                conn.Open();
-                dt.Load(command.ExecuteReader());
-                conn.Close();
-
-
-
-                //SqlDataAdapter cmd = new SqlDataAdapter("SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum" +
-                //        " from [transaction] WHERE receivedDate BETWEEN '" + fromDate.Value + "' AND '" + toDate.Value + "' AND username= '" +username + "'", conn);
-                //    conn.Open();
-                //    cmd.Fill(dt);
-                //    conn.Close();
-                
+                catch(Exception ex)
+                {
+                    errMsg = "عليك تعبئة جميع الحقول";
+                }
 
             }
 

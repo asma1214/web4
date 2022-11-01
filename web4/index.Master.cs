@@ -1,26 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
+using System.Text.RegularExpressions;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
-using System.Drawing;
 
 
 namespace web4
 {
     public partial class index1 : System.Web.UI.MasterPage
     {
-        SqlConnection conn = new SqlConnection("Data Source=DESKTOP-63JE2M4\\WEBDB; Initial Catalog=webDB; User Id=sa; Password=webDB1234; Integrated Security=false; MultipleActiveResultSets=true");
+        //SqlConnection conn = new SqlConnection("Data Source=DESKTOP-63JE2M4\\WEBDB; Initial Catalog=webDB; User Id=sa; Password=webDB1234; Integrated Security=false; MultipleActiveResultSets=true");
+        SqlConnection conn = new SqlConnection("Data Source=ASMA_BADR\\DBWEB; Initial Catalog=webDB; User Id=asmaBadr; Password=webDB1234; Integrated Security=false");
+
         public string password, name, email, phone;
         public bool flag = true;
         public string msg = "";
         public string icon;
         public string title;
-        Button checkButton = new Button();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -74,6 +71,9 @@ namespace web4
             string validPass = Request.Form["validPass"];
             string pass;
             string sql;
+            string pattern = @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$";
+            bool isPassValid = Regex.IsMatch(newPass, pattern);
+
             if (conn.State == ConnectionState.Closed)
                 conn.Open();
             if ((String.IsNullOrEmpty(newPass)) == false)
@@ -95,22 +95,34 @@ namespace web4
                     {
                         if (newPass == validPass)
                         {
-                            string myNewHash = BCrypt.Net.BCrypt.ValidateAndReplacePassword(currentPass, pass, newPass);
-
-                            sql = " UPDATE [login] SET name = @empname , password = @newPass " +
-                                "WHERE email = @Session";
-                            using (SqlCommand cmd = new SqlCommand(sql, conn))
+                            if (isPassValid)
                             {
-                                SqlParameter[] param = new SqlParameter[3];
-                                param[0] = new SqlParameter("@empname", empname);
-                                param[1] = new SqlParameter("@newPass", myNewHash);
-                                param[2] = new SqlParameter("@Session", Session["email"]);
-                                cmd.Parameters.Add(param[0]);
-                                cmd.Parameters.Add(param[1]);
-                                cmd.Parameters.Add(param[2]);
-                                cmd.ExecuteReader();
-                                if (conn.State == ConnectionState.Open)
-                                    conn.Close();
+                                string myNewHash = BCrypt.Net.BCrypt.ValidateAndReplacePassword(currentPass, pass, newPass);
+
+                                sql = " UPDATE [login] SET name = @empname , password = @newPass " +
+                                    "WHERE email = @Session";
+                                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                                {
+                                    cmd.Parameters.AddWithValue("@empname", empname);
+                                    cmd.Parameters.AddWithValue("@newPass", myNewHash);
+                                    cmd.Parameters.AddWithValue("@Session", Session["email"]);
+                                    //SqlParameter[] param = new SqlParameter[3];
+                                    //param[0] = new SqlParameter("@empname", empname);
+                                    //param[1] = new SqlParameter("@newPass", myNewHash);
+                                    //param[2] = new SqlParameter("@Session", Session["email"]);
+                                    //cmd.Parameters.Add(param[0]);
+                                    //cmd.Parameters.Add(param[1]);
+                                    //cmd.Parameters.Add(param[2]);
+                                    cmd.ExecuteNonQuery();
+                                    if (conn.State == ConnectionState.Open)
+                                        conn.Close();
+                                }
+
+                            }
+                            else
+                            {
+                                msg = ".يرجى اختيار كلمة مرور أقوى. جرّب مزيجًا من الأحرف والأرقام";
+
                             }
                         }
                     }
@@ -121,7 +133,9 @@ namespace web4
                 sql = "UPDATE [login] SET name = @empname WHERE email = @email";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    cmd.ExecuteReader();
+                    cmd.Parameters.AddWithValue("@empname", empname);
+                    cmd.Parameters.AddWithValue("@email", Session["email"]);
+                    cmd.ExecuteNonQuery();
                 }
 
 

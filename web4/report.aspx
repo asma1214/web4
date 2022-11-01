@@ -33,7 +33,7 @@
                         <input type="date" class="form-control form-control-user"
                             id="toDate" placeholder="الى تاريخ" runat="server">
                     </div>
-                          <p class="newColor" id="flexRight"><%= errMsg %></p>
+                          <p class="newColor" id="flexRight"> <%= errMsg %> </p>
                     <div class="form-group">
 
                         <asp:Button type="button" ID="submit" class="btn btn-primary w-100" OnClick="submit_Click" Text="submit" runat="server" />

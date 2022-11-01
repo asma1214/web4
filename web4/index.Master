@@ -80,7 +80,7 @@
                     {  %>
 
             <hr class="sidebar-divider">
-            <li class="nav-item" style="display= none;">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="mngUsr.aspx" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <span>إدارة المستخدمين</span>
@@ -127,7 +127,7 @@
                      
                             <a class="nav-link dropdown-toggle" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onserverclick="submit_Click" runat="server">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" >Logout</span> 
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" >تسجيل الخروج</span> 
                                 <i class="fas fa-sign-out-alt"></i>
                             </a>
                         </li>
@@ -178,14 +178,17 @@
                     </div>
                     
                     <div class="col-md-12 mt-2" id="passDiv"  style="display: none;">
+                        <label for="comment" class="col-form-label" style="color: #358F80">من فضلك استخدم 8 أحرف أو أكثر باستعمال مزيج من الأحرف والأرقام</label>
+                        <p>&nbsp</p>
+                       
                         <label for="currentPass" class="col-form-label">:كلمة المرور الحالية</label>
-                        <input type="text" class="form-control" name="currentPass" id="currentPass">
+                        <input type="password" class="form-control" name="currentPass" id="currentPass">
 
                         <label for="newPass" class="col-form-label">:كلمة المرور الجديدة</label>
-                        <input type="text" class="form-control" name="newPass" id="newPass">
+                        <input type="password" class="form-control" name="newPass" id="newPass">
 
                         <label for="validPass" class="col-form-label">:تأكيد كلمة المرور</label>
-                        <input type="text" class="form-control"name="validPass" id="validPass">
+                        <input type="password" class="form-control"name="validPass" id="validPass">
 
                     </div>
 
@@ -196,8 +199,7 @@
         <div class="modal-footer mt-4">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
             <%--<button type="button" class="btn btn-primary" onserverclick="change" runat="server">حفظ</button>--%>
-               <asp:Button ID="save" class="btn btn-primary"
-                            Text="حفظ" OnClick="change" runat="server" />
+               <asp:Button ID="save" class="btn btn-primary" Text="حفظ" OnClick="change" runat="server" />
             <%if (flag == false)
                 { %>
             <script>
