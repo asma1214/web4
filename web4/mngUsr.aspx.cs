@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using System.Web;
 
 namespace web4
 {
@@ -16,14 +17,30 @@ namespace web4
         public string errorMsg;
         public int a;
         String sql;
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
+        private void Page_Error(object sender, EventArgs e)
+        {
+            Exception exc = Server.GetLastError();
+
+            // Handle specific exception.
+            if (exc is HttpUnhandledException)
+            {
+
+                Response.Write("An error occurred on this page. Please verify your " +
+                 "information to resolve the issue.");
+            }
+            // Clear the error from the server.
+            Server.ClearError();
+        }
+
         protected void submit_Click(object sender, EventArgs e)
         {
-            string emailPattern = @"^[a-z0-9](\.?[a-z0-9]){5,}@(?:iau.edu.sa)$";
+            try
+            {
+                string emailPattern = @"^[a-z0-9](\.?[a-z0-9]){5,}@(?:iau.edu.sa)$";
             bool isEmailValid = Regex.IsMatch(email.Value, emailPattern);
             flag = true;
 
@@ -47,7 +64,6 @@ namespace web4
                         SqlParameter[] param = new SqlParameter[1];
                         param[0] = new SqlParameter("@email", email.Value);
                         cmd.Parameters.Add(param[0]);
-                        //int a = cmd.ExecuteNonQuery();
                         int count = Convert.ToInt32(cmd.ExecuteScalar());
                         if (count > 0)
                             exist = (int)cmd.ExecuteScalar() > 0;
@@ -61,12 +77,6 @@ namespace web4
                     else
                     {
 
-                        //sql = "INSERT INTO [login] (email, name, role) values('" + email.Value + "','" + empName.Value + "')";
-                        //command = new SqlCommand(sql, conn);
-                        //adapter.InsertCommand = new SqlCommand(sql, conn);
-                        //a = adapter.InsertCommand.ExecuteNonQuery();
-                        //error happened while executing the query
-
                         sql = "INSERT INTO [login] (email, name, role) values(@email, @name, @role)";
                         command = new SqlCommand(sql, conn);
                         command.Parameters.AddWithValue("@email", email.Value);
@@ -74,16 +84,6 @@ namespace web4
                         command.Parameters.AddWithValue("@role", "u");
                         a = command.ExecuteNonQuery();
                        
-
-                        //SqlParameter[] param = new SqlParameter[3];
-                        //param[0] = new SqlParameter("email", email.Value);
-                        //param[1] = new SqlParameter("name", empName.Value);
-                        //param[2] = new SqlParameter("role", "u");
-                        ////adapter.InsertCommand = new SqlCommand(sql, conn);
-                        //command.Parameters.Add(param[0]);
-                        //command.Parameters.Add(param[1]);
-                        //command.Parameters.Add(param[2]);
-                        //a = adapter.InsertCommand.ExecuteNonQuery();
                         if(a == 0)
                         {
                             msg = "لم يتم إضافة المستخدم بنجاح";
@@ -108,9 +108,19 @@ namespace web4
                 }   
             }
 
-                
+
 
 
         }
+            //*
+            catch(HttpRequestValidationException ex)
+            {
+                Response.Write(ex.Message.ToString());
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex.Message.ToString());
+            }
+    }
     }
 }

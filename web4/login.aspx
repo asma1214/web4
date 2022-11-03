@@ -12,8 +12,7 @@
   <meta content="" name="keywords"/>
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon"/>
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"/>
+  <link href="img/logo.png" rel="icon"/>
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -66,15 +65,6 @@
                   </div>
 
                   <form class="row g-3 needs-validation" name="login" novalidate runat="server"> 
-
-                    <%--<div class="col-12">
-                        <label for="yourUsername" class="form-label">Username</label>
-                        <div class="input-group has-validation">
-                            <span class="input-group-text" id="inputGroupPrepend">@</span>
-                            <input type="text" name="username" class="form-control" id="yourUsername" runat="server" required>
-                            <div class="invalid-feedback">Please enter your username.</div>
-                        </div>
-                    </div>--%>
 
                       <div class="col-12">
                         <label for="email" class="form-label">Email</label>

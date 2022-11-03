@@ -76,6 +76,7 @@ namespace web4
                         Session["role"] = role;
                         //Session["username"] = username;
                         Session["email"] = email;
+
                         Response.Redirect("userSit.aspx");
                     }
                     else

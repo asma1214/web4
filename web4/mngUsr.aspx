@@ -3,7 +3,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+    <%try
+        {  %>
     <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">المعاملات</h6>
@@ -25,7 +26,8 @@
                 <div class="form-group">
                 <asp:Button type="button" ID="submit" class="btn btn-primary w-100" OnClick="submit_Click" Text="submit" runat="server" />
                     </div>
-                <%if(flag == true) { %>
+                <%if (flag == true)
+                    { %>
                 <script>
                     Swal.fire({
                         icon:'<%= icon %>',
@@ -38,6 +40,15 @@
                 </div>
             </div>
         </div>
+    <%}
+         catch(HttpRequestValidationException ex)
+            {
+                Response.Write(ex.Message.ToString());
+            }
+            catch (Exception ex)
+            {
+                Response.Write(ex.Message.ToString());
+            }%>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
         <Scripts>
             <asp:ScriptReference Path="vendor/jquery/jquery.min.js" />

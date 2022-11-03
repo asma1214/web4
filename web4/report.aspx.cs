@@ -134,7 +134,7 @@ namespace web4
                 {
 
                     if(fromDate.Value.Length == 0 || toDate.Value.Length == 0)
-                        errMsg = "نطاق تاريخ غير صالح";
+                        errMsg = "عليك تعبئة جميع الحقول";
 
                     string email = Session["email"].ToString();
                     int result = DateTime.Compare(DateTime.Parse(fromDate.Value), DateTime.Parse(toDate.Value));
@@ -164,7 +164,7 @@ namespace web4
                 }
                 catch(Exception ex)
                 {
-                    errMsg = "عليك تعبئة جميع الحقول";
+                    
                 }
 
             }

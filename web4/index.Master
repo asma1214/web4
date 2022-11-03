@@ -13,6 +13,7 @@
     <meta name="author" content="">
 
     <title>المراسلات</title>
+    <link href="img/logo.png" rel="icon" />
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -153,12 +154,6 @@
                         <input type="text" class="form-control" id="empName" name="empName" value="<%= name %>">
                     </div>
 
-                    <%--<div class="col-md-6">
-                        <label for="username" class="labels">:اسم المستخدم</label>
-                        <input type="text" class="form-control" id="username" name="username" value="<%= username %>">
-                    </div>--%>
-
-
                     <div class="col-md-6 mt-2">
                         <label for="email" class="labels">:البريد الإلكتروني</label>
                         <input type="email" class="form-control" id="email" name="email" value="<%= email %>" disabled>
@@ -170,8 +165,7 @@
                     </div>
 
                     <div class="col-md-12 mt-2">
-                        <%--<button type="button" id="changePass" class="btn-close border-0 float-right bg-transparent color" 
-                            aria-hidden="true" onserverclick="newPassword" OnClientClick="return false;" runat="server">تغيير كلمة المرور</button>--%>
+                       
                         <asp:Button ID="changePassword" class="btn-close border-0 float-right bg-transparent color"
                             Text="تغيير كلمة المرور" OnClientClick="return false;" runat="server" />
 
@@ -198,7 +192,6 @@
         </div>
         <div class="modal-footer mt-4">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
-            <%--<button type="button" class="btn btn-primary" onserverclick="change" runat="server">حفظ</button>--%>
                <asp:Button ID="save" class="btn btn-primary" Text="حفظ" OnClick="change" runat="server" />
             <%if (flag == false)
                 { %>
@@ -226,7 +219,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>&copy 2022 Imam Abdulrahman Bin Faisal University. All rights reserved.</span>
                     </div>
                 </div>
             </footer>

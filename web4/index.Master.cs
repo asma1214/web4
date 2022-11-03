@@ -106,13 +106,7 @@ namespace web4
                                     cmd.Parameters.AddWithValue("@empname", empname);
                                     cmd.Parameters.AddWithValue("@newPass", myNewHash);
                                     cmd.Parameters.AddWithValue("@Session", Session["email"]);
-                                    //SqlParameter[] param = new SqlParameter[3];
-                                    //param[0] = new SqlParameter("@empname", empname);
-                                    //param[1] = new SqlParameter("@newPass", myNewHash);
-                                    //param[2] = new SqlParameter("@Session", Session["email"]);
-                                    //cmd.Parameters.Add(param[0]);
-                                    //cmd.Parameters.Add(param[1]);
-                                    //cmd.Parameters.Add(param[2]);
+                                   
                                     cmd.ExecuteNonQuery();
                                     if (conn.State == ConnectionState.Open)
                                         conn.Close();
@@ -136,6 +130,7 @@ namespace web4
                     cmd.Parameters.AddWithValue("@empname", empname);
                     cmd.Parameters.AddWithValue("@email", Session["email"]);
                     cmd.ExecuteNonQuery();
+                    Session["name"] = empname;
                 }
 
 
