@@ -1993,6 +1993,19 @@ select.form-control[size], select.form-control[multiple] {
 textarea.form-control {
   height: auto;
 }
+.fa-circle:before {
+    content: "\f111";
+    
+    font-size: x-small;
+}
+
+.pen-color {
+    color: #FFBE0B;
+}
+
+.sucess-color {
+    color: #AACC00;
+}
 
 .form-group {
     margin-bottom: 1rem;
@@ -2000,6 +2013,14 @@ textarea.form-control {
     display: flex;
     margin: auto;
     padding: 15px;
+}
+.empName, .startDate, .dueDate, .emailMng {
+    width: 40%;
+    display: flex;
+    margin: auto;
+    padding: 15px;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .form-text {

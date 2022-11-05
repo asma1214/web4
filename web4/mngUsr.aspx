@@ -10,13 +10,15 @@
                 <h6 class="m-0 font-weight-bold text-primary">المعاملات</h6>
             </div>
         <div class="card-body">
-            <div class="p-5">
-                 <div class="form-group">
+            <div class="p-5 flex-row-reverse">
+                 <div class="form-group emailMng">
+                       <label>:البريد الالكتروني</label>
                         <input type="text" class="form-control form-control-user"
                             id="email" aria-describedby="emailHelp"
                             placeholder="البريد الإلكتروني" runat="server">
                     </div>
-                <div class="form-group">
+                <div class="form-group empName">
+                       <label>:اسم الموظف</label>
                         <input type="text" class="form-control form-control-user"
                             id="empName" aria-describedby="emailHelp"
                             placeholder="إسم الموظف" runat="server">
@@ -24,7 +26,7 @@
 
                  
                 <div class="form-group">
-                <asp:Button type="button" ID="submit" class="btn btn-primary w-100" OnClick="submit_Click" Text="submit" runat="server" />
+                <asp:Button type="button" ID="submit" class="btn btn-primary w-100" OnClick="submit_Click" Text="إرسال" runat="server" />
                     </div>
                 <%if (flag == true)
                     { %>

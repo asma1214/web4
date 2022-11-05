@@ -64,6 +64,7 @@
                     <i class="fas fa-inbox"></i>
                 </a>
             </li>
+            <hr class="sidebar-divider"/>
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
@@ -89,7 +90,28 @@
                     <i class="fas fa-user-cog"></i>
                 </a>
             </li>
-            <%} %>
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="addTran.aspx" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <span>اضافة معاملة</span>
+                    &nbsp
+                    <i class="fas fa-file-medical"></i>
+                </a>
+            </li>
+            <%}else
+                { %>
+            <hr class="sidebar-divider">
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="recieve.aspx" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <span>استلام معاملة</span>
+                    &nbsp
+                    <i class="fas fa-user-cog"></i>
+                </a>
+            </li>
+
+               <% } %>
 
         </ul>
         <!-- End of Sidebar -->

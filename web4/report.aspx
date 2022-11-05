@@ -15,7 +15,8 @@
                     <% string role = Session["role"].ToString();
                         if (role == "a")
                         {  %>
-                    <div class="form-group">
+                    <div class="form-group empName">
+                        <label for="empName">:اسم الموظف</label>
                         <input type="text" class="form-control form-control-user"
                             id="empName" aria-describedby="emailHelp"
                             placeholder="إسم الموظف" runat="server">
@@ -24,12 +25,14 @@
                     <%} %>
 
                         <%--<label>من تاريخ</label>--%>
-                    <div class="form-group">
+                    <div class="form-group startDate">
+                         <label>:من تاريخ</label>
                         <input type="date" class="form-control form-control-user"
                             id="fromDate" name="fromDate" placeholder="من تاريخ" runat="server">
                     </div>
                     <%--<label>الى تاريخ</label>--%>
-                    <div class="form-group">
+                    <div class="form-group dueDate">
+                        <label>:إلى تاريخ</label>
                         <input type="date" class="form-control form-control-user"
                             id="toDate" placeholder="الى تاريخ" runat="server">
                     </div>

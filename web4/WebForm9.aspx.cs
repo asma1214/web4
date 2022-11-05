@@ -9,26 +9,31 @@ using System.Web.UI.WebControls;
 
 namespace web4
 {
-    public partial class WebForm5 : System.Web.UI.Page
+    public partial class WebForm9 : System.Web.UI.Page
     {
         SqlConnection conn = new SqlConnection("Data Source=ASMA_BADR\\DBWEB; Initial Catalog=webDB; User Id=asmaBadr; Password=webDB1234; Integrated Security=false");
-        string value;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            string sql = "SELECT name FROM [login] WHERE userID= '" + value + "'";
+
+        }
+        protected void submit_Click(object sender, EventArgs e)
+        {
+           string v=
+                Request.Form["employee_name"];
+            string sql = "SELECT name FROM [login] WHERE userID= '" + v + "'";
             int a;
             //SELECT password FROM [login] WHERE email = @email
-            //using (SqlCommand cmd = new SqlCommand(sql, conn))
-            //{
-
-            //}
-                //string v = "أسماء,1";
-                //char[] spearator = { ','};
-                //string v2 = v.Split(spearator)[1] ;
-                //Response.Write(v2);
-
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            {
+                //cmd.Parameters.AddWithValue("@id", value1);
+                //SqlDataReader reader = cmd.ExecuteReader();
+                //reader.Read();
+                cmd.ExecuteNonQuery();
             }
-        public int print()
+            }
+
+        public int print_names()
         {
             SqlDataAdapter command = new SqlDataAdapter();
             DataTable dt = new DataTable();
@@ -37,7 +42,7 @@ namespace web4
             {
                 command.SelectCommand = cmd;
                 command.Fill(dt);
-                Response.Write(" <select name=\"empname\" id=\"empmame\">");
+                Response.Write(" <select name=\"employee_name\" class=\"form-control form-control-user\">");
                 Response.Write("<option value=\"none\" selected disabled hidden>اختر اسم الموظف</option>");
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
@@ -50,9 +55,8 @@ namespace web4
 
             }
             Response.Write("</select>");
-             value = Request.Form["empname"];
-    
-           // Response.Write(value);
+            //value = Request.Form["empname"];
+            //Response.Write(value);
             //    char[] sep = { ',' };
             //string v = Request.Form.Get("empname");
             //    Response.Write(v);
@@ -61,13 +65,6 @@ namespace web4
 
             return 0;
         }
-        protected void submit_Click(object sender, EventArgs e)
-        {
-
-            string sql = "SELECT name FROM login WHERE userID= 3";
-            SqlCommand cmd = new SqlCommand(sql, conn);
-            cmd.ExecuteNonQuery();
-
-        }
     }
+
 }

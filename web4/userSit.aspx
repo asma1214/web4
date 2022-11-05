@@ -13,23 +13,26 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
-                                        <tr>
+                                        <tr style="text-align:right">
                                             <th>اسم الموظف</th>
                                             <th>تاريخ الاستلام</th>
                                             <th>المستلم</th>
                                             <th>الجهة المرسل اليها</th>
                                             <th>الجهة الواردة</th>
                                             <th>رقم المعاملة</th>
+                                            <th>الحالة</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
-                                        <tr>
+                                        <tr style="text-align:right">
                                             <th>اسم الموظف</th>
                                             <th>تاريخ الاستلام</th>
                                             <th>المستلم</th>
                                             <th>الجهة المرسل اليها</th>
                                             <th>الجهة الواردة</th>
                                             <th>رقم المعاملة</th>
+                                            <th>الحالة</th>
+
                                         </tr>
                                     </tfoot>
                                     <tbody>

@@ -9,6 +9,11 @@
 <body>
     <form id="form1" runat="server">
         <div>
+         
+<%--            <%print(); %>--%>
+                        <asp:Button type="button" ID="submit" OnClick="submit_Click"  Text="إرسال" runat="server" />
+
+            
         </div>
     </form>
 </body>

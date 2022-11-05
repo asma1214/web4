@@ -24,14 +24,14 @@ namespace web4
             SqlDataAdapter cmd = new SqlDataAdapter();
             if (role == "a")
             {
-                SqlCommand command = new SqlCommand("SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum from [transaction]", conn);
+                SqlCommand command = new SqlCommand("SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum,status from [transaction]", conn);
                 cmd.SelectCommand = command;
             
             }
             else
             {
                 
-                SqlCommand command = new SqlCommand("SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum " +
+                SqlCommand command = new SqlCommand("SELECT employeeName, receivedDate, recipient, senderParty, receivedParty, tranNum, status " +
                     "FROM [transaction] INNER JOIN [login] on [transaction].[email] = [login].[email] WHERE [login].[email] = '" + email + "'", conn);
 
 
@@ -44,7 +44,7 @@ namespace web4
 
             for(int i = 0; i < dt.Rows.Count; i++)
             {
-                Response.Write("<tr>");
+                Response.Write("<tr style=\"text-align:right\">");
                 for(int j=0; j < dt.Columns.Count; j++)
                 {
                     Response.Write("<td>");
@@ -53,9 +53,24 @@ namespace web4
                         Response.Write(dt.Rows[i].Field<DateTime>("receivedDate").ToString(date));
 
                     }
+                    else if(j == 6)
+                    {
+                        string status = dt.Rows[i][6].ToString();
+                        if (status == "p") {
+                            Response.Write("معلق");
+                            Response.Write(" <i class=\"fas fa-circle pen-color\"></i>");
+                        }
+                        else
+                        {
+
+                            Response.Write("تم بنجاح");
+                            Response.Write(" <i class=\"fas fa-circle sucess-color\"></i>");
+                        }
+                    }
                     else
                     {
                         Response.Write(dt.Rows[i][j].ToString());
+                       
 
                     }
                     Response.Write("</td>");
