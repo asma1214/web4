@@ -4618,3 +4618,27 @@ Source: mscorlib
 TargetSite: Void AbortInternal()
 -----------------------------------------------------------
 
+Time: 07/11/2022 02:20:07 PM
+-----------------------------------------------------------
+Message: Thread was being aborted.
+StackTrace:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at web4.login.submit_Click(Object sender, EventArgs e) in C:\Users\asmaB\source\repos\web4\web4\login.aspx.cs:line 80
+Source: mscorlib
+TargetSite: Void AbortInternal()
+-----------------------------------------------------------
+
+Time: 07/11/2022 02:22:41 PM
+-----------------------------------------------------------
+Message: Thread was being aborted.
+StackTrace:    at System.Threading.Thread.AbortInternal()
+   at System.Threading.Thread.Abort(Object stateInfo)
+   at System.Web.HttpResponse.AbortCurrentThread()
+   at System.Web.HttpResponse.Redirect(String url, Boolean endResponse, Boolean permanent)
+   at web4.login.submit_Click(Object sender, EventArgs e) in C:\Users\asmaB\source\repos\web4\web4\login.aspx.cs:line 80
+Source: mscorlib
+TargetSite: Void AbortInternal()
+-----------------------------------------------------------
+
