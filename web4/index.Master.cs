@@ -21,16 +21,14 @@ namespace web4
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (conn.State == ConnectionState.Closed)
-            {
-                conn.Open();
-
-
-            }
             Page.Header.DataBind();
             DataTable dt = new DataTable();
             try
             {
+            if (conn.State == ConnectionState.Closed)
+            {
+                conn.Open();
+            }
                 using (SqlDataAdapter cmd = new SqlDataAdapter("SELECT name, password, email, phone from [login] WHERE email = '" + Session["email"] + "' ", conn))
                 {
 
@@ -89,6 +87,8 @@ namespace web4
                         SqlDataReader reader = cmd.ExecuteReader();
                         reader.Read();
                         pass = reader["password"].ToString();
+                        if (conn.State == ConnectionState.Open)
+                            conn.Close();
                     }
                     bool varify = BCrypt.Net.BCrypt.Verify(currentPass, pass);
                     if (varify)
@@ -103,6 +103,8 @@ namespace web4
                                     "WHERE email = @Session";
                                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                                 {
+                                    if (conn.State == ConnectionState.Closed)
+                                        conn.Open();
                                     cmd.Parameters.AddWithValue("@empname", empname);
                                     cmd.Parameters.AddWithValue("@newPass", myNewHash);
                                     cmd.Parameters.AddWithValue("@Session", Session["email"]);

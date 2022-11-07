@@ -2366,6 +2366,9 @@ textarea.form-control {
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
 }
+.btn-padding {
+    margin-top: 50px;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .btn {
@@ -3858,6 +3861,12 @@ input[type="button"].btn-block {
   background-color: #fff;
   border: 1px solid #d1d3e2;
   border-radius: 0.35rem;
+}
+
+.label-padding {
+
+    margin-top: 50px;
+
 }
 
 .custom-file-label::after {

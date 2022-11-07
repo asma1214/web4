@@ -1962,6 +1962,7 @@ progress {
 }
 .form-label {
   margin-bottom: 0.5rem;
+  float: right;
 }
 
 .col-form-label {
@@ -2711,11 +2712,12 @@ textarea.form-control-lg {
 }
 
 .invalid-feedback {
-  display: none;
-  width: 100%;
-  margin-top: 0.25rem;
-  font-size: 0.875em;
-  color: #dc3545;
+    display: none;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 0.875em;
+    color: #dc3545;
+    text-align: right;
 }
 
 .invalid-tooltip {
@@ -2737,6 +2739,7 @@ textarea.form-control-lg {
 .is-invalid ~ .invalid-feedback,
 .is-invalid ~ .invalid-tooltip {
   display: block;
+  text-align:right;
 }
 
 .was-validated .form-control:invalid, .form-control.is-invalid {

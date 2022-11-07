@@ -2041,7 +2041,7 @@
     <Content Include="WebForm4.aspx" />
     <Content Include="WebForm5.aspx" />
     <Content Include="WebForm6.aspx" />
-    <Content Include="recieve.aspx" />
+    <Content Include="recieveTran.aspx" />
     <Content Include="addTran.aspx" />
     <Content Include="WebForm9.aspx" />
   </ItemGroup>
@@ -2106,12 +2106,12 @@
     <Compile Include="WebForm6.aspx.designer.cs">
       <DependentUpon>WebForm6.aspx</DependentUpon>
     </Compile>
-    <Compile Include="recieve.aspx.cs">
-      <DependentUpon>recieve.aspx</DependentUpon>
+    <Compile Include="recieveTran.aspx.cs">
+      <DependentUpon>recieveTran.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="recieve.aspx.designer.cs">
-      <DependentUpon>recieve.aspx</DependentUpon>
+    <Compile Include="recieveTran.aspx.designer.cs">
+      <DependentUpon>recieveTran.aspx</DependentUpon>
     </Compile>
     <Compile Include="addTran.aspx.cs">
       <DependentUpon>addTran.aspx</DependentUpon>

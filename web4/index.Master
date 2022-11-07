@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>المراسلات</title>
+    <title>صِله</title>
     <link href="img/logo.png" rel="icon" />
 
     <!-- Custom fonts for this template-->
@@ -103,7 +103,7 @@
                 { %>
             <hr class="sidebar-divider">
             <li class="nav-item">
-                <a class="nav-link collapsed" href="recieve.aspx" data-toggle="collapse" data-target="#collapseTwo"
+                <a class="nav-link collapsed" href="recieveTran.aspx" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <span>استلام معاملة</span>
                     &nbsp
@@ -116,135 +116,127 @@
         </ul>
         <!-- End of Sidebar -->
                     <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content-wrapper" class="d-flex flex-column">
 
-            <!-- Main Content -->
-            <div id="content">
+                <!-- Main Content -->
+                <div id="content">
 
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                        <!-- Topbar Navbar -->
+                        <ul class="navbar-nav ml-auto">
+                            <!-- Nav Item - User Information -->
+                            <li class="nav-item dropdown no-arrow" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                <a class="nav-link dropdown-toggle" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%=Session["name"] %></span>
+                                    <img class="img-profile rounded-circle"
+                                        src="img/profile1.png">
+                                </a>
+                            </li>
+                            <%}
+                                catch (Exception)
+                                {
+                                    Response.Redirect("login.aspx");
+                                }%>
 
-                        <!-- Nav Item - Messages -->
-                       
+                            <li class="nav-item dropdown no-arrow">
+
+                                <a class="nav-link dropdown-toggle" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onserverclick="submit_Click" runat="server">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">تسجيل الخروج</span>
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </nav>
+
+                    <!-- Button trigger modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">الملف الشخصي</h1>
+
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="row flex-row-reverse">
+                                            <div class="col-md-6">
+                                                <label for="empName" class="labels">:الإسم</label>
+                                                <input type="text" class="form-control" id="empName" name="empName" value="<%= name %>">
+                                            </div>
+
+                                            <div class="col-md-6 mt-2">
+                                                <label for="email" class="labels">:البريد الإلكتروني</label>
+                                                <input type="email" class="form-control" id="email" name="email" value="<%= email %>" disabled>
+                                            </div>
+
+                                            <div class="col-md-6 mt-2">
+                                                <label for="phone" class="labels">:رقم الهاتف المحمول</label>
+                                                <input type="text" class="form-control" id="phone" value="<%= phone %>" disabled>
+                                            </div>
+
+                                            <div class="col-md-12 mt-2">
+
+                                                <asp:Button ID="changePassword" class="btn-close border-0 float-right bg-transparent color"
+                                                    Text="تغيير كلمة المرور" OnClientClick="return false;" runat="server" />
+
+                                            </div>
+
+                                            <div class="col-md-12 mt-2" id="passDiv" style="display: none;">
+                                                <label for="comment" class="col-form-label" style="color: #358F80">من فضلك استخدم 8 أحرف أو أكثر باستعمال مزيج من الأحرف والأرقام</label>
+                                                <p>&nbsp</p>
+
+                                                <label for="currentPass" class="col-form-label">:كلمة المرور الحالية</label>
+                                                <input type="password" class="form-control" name="currentPass" id="currentPass">
+
+                                                <label for="newPass" class="col-form-label">:كلمة المرور الجديدة</label>
+                                                <input type="password" class="form-control" name="newPass" id="newPass">
+
+                                                <label for="validPass" class="col-form-label">:تأكيد كلمة المرور</label>
+                                                <input type="password" class="form-control" name="validPass" id="validPass">
+                                            </div>
 
 
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                            <a class="nav-link dropdown-toggle" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%=Session["name"] %></span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/profile1.png">
-                            </a>
-                        </li>
-                        <%}
-                            catch (Exception)
-                            {
-                                Response.Redirect("login.aspx");
-                            }%>
-
-                       <li class="nav-item dropdown no-arrow">
-                     
-                            <a class="nav-link dropdown-toggle" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onserverclick="submit_Click" runat="server">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" >تسجيل الخروج</span> 
-                                <i class="fas fa-sign-out-alt"></i>
-                            </a>
-                        </li>
-
-                    </ul>
-
-                </nav>
-
-                <!-- Button trigger modal -->
-    <%--<%--            <%--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--%>
-<div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">الملف الشخصي</h1>
-
-      </div>
-        <div class="modal-body">
-            <div class="container-fluid">
-                <div class="row flex-row-reverse">
-                    <div class="col-md-6">
-                        <label for="empName" class="labels">:الإسم</label>
-                        <input type="text" class="form-control" id="empName" name="empName" value="<%= name %>">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer mt-4">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                                    <asp:Button ID="save" class="btn btn-primary" Text="حفظ" OnClick="change" runat="server" />
+                                    <%if (flag == false)
+                                        { %>
+                                    <script>
+                                        Swal.fire({
+                                            icon:'<%= icon %>',
+                    title: '<%= title %>',
+                    text: '<%= msg %>',
+                });
+                                    </script>
+                                    <%} %>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="col-md-6 mt-2">
-                        <label for="email" class="labels">:البريد الإلكتروني</label>
-                        <input type="email" class="form-control" id="email" name="email" value="<%= email %>" disabled>
-                    </div>
 
-                    <div class="col-md-6 mt-2">
-                        <label for="phone" class="labels">:رقم الهاتف المحمول</label>
-                        <input type="text" class="form-control" id="phone" value="<%= phone %>" disabled>
-                    </div>
-
-                    <div class="col-md-12 mt-2">
-                       
-                        <asp:Button ID="changePassword" class="btn-close border-0 float-right bg-transparent color"
-                            Text="تغيير كلمة المرور" OnClientClick="return false;" runat="server" />
-
-                    </div>
-                    
-                    <div class="col-md-12 mt-2" id="passDiv"  style="display: none;">
-                        <label for="comment" class="col-form-label" style="color: #358F80">من فضلك استخدم 8 أحرف أو أكثر باستعمال مزيج من الأحرف والأرقام</label>
-                        <p>&nbsp</p>
-                       
-                        <label for="currentPass" class="col-form-label">:كلمة المرور الحالية</label>
-                        <input type="password" class="form-control" name="currentPass" id="currentPass">
-
-                        <label for="newPass" class="col-form-label">:كلمة المرور الجديدة</label>
-                        <input type="password" class="form-control" name="newPass" id="newPass">
-
-                        <label for="validPass" class="col-form-label">:تأكيد كلمة المرور</label>
-                        <input type="password" class="form-control"name="validPass" id="validPass">
-
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-        <div class="modal-footer mt-4">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
-               <asp:Button ID="save" class="btn btn-primary" Text="حفظ" OnClick="change" runat="server" />
-            <%if (flag == false)
-                { %>
-            <script>
-                Swal.fire({
-                    icon:'<%= icon %>',
-                        title: '<%= title %>',
-                        text: '<%= msg %>',
-                    });
-            </script>
-            <%} %>
-        </div>
-      </div>
-    </div>
-    </div>
-                  
-
-        <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
-                </div>
-            
-
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>&copy 2022 Imam Abdulrahman Bin Faisal University. All rights reserved.</span>
+                    <div>
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
                     </div>
                 </div>
-            </footer>
+
+
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>&copy 2022 Imam Abdulrahman Bin Faisal University. All rights reserved.</span>
+                        </div>
+                    </div>
+                </footer>
             </div>
         </div>
         <script>

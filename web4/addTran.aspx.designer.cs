@@ -57,7 +57,7 @@ namespace web4
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText tranID;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl tranID;
 
         /// <summary>
         /// submit control.

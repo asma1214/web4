@@ -41,11 +41,15 @@ namespace web4
 
             DataTable dt = new DataTable();
             cmd.Fill(dt);
-
-            for(int i = 0; i < dt.Rows.Count; i++)
+            int colCount = dt.Columns.Count;
+            if (Session["role"].ToString() == "a")
+            {
+                colCount = dt.Columns.Count + 1;
+            }
+            for (int i = 0; i < dt.Rows.Count; i++)
             {
                 Response.Write("<tr style=\"text-align:right\">");
-                for(int j=0; j < dt.Columns.Count; j++)
+                for(int j=0; j < colCount; j++)
                 {
                     Response.Write("<td>");
                     if (j == 1)
@@ -67,18 +71,40 @@ namespace web4
                             Response.Write(" <i class=\"fas fa-circle sucess-color\"></i>");
                         }
                     }
+                    else if(j == 7)
+                    {
+                        string status = dt.Rows[i][6].ToString();
+                        if (Session["role"].ToString() == "a")
+                        {
+
+                            if (status == "s")
+                            {
+                                Response.Write("<div style=\"justify-content:center; align-content:center\">");
+                                Response.Write("<button class=\"btn btn-primary w-100\"  runat=\"server\">عرض التفاصيل</button>");
+                                Response.Write("</div>");
+                            }
+                            else
+                            {
+                                Response.Write("<p>لم يتم استلامها بعد</p>");
+                            }
+                        }
+                    }
                     else
                     {
                         Response.Write(dt.Rows[i][j].ToString());
                        
 
                     }
+
                     Response.Write("</td>");
+                 
 
                 }
                 Response.Write("</tr>");
             }
-            
+    
+
+
             conn.Close();
 
             return 0;

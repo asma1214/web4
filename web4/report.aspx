@@ -10,7 +10,6 @@
                 <h6 class="m-0 font-weight-bold text-primary">المعاملات</h6>
             </div>
             <div class="card-body">
-                        <%--<label>إسم الموظف</label>--%>
                 <div class="p-5">
                     <% string role = Session["role"].ToString();
                         if (role == "a")
@@ -19,27 +18,33 @@
                         <label for="empName">:اسم الموظف</label>
                         <input type="text" class="form-control form-control-user"
                             id="empName" aria-describedby="emailHelp"
-                            placeholder="إسم الموظف" runat="server">
+                            placeholder="اسم الموظف" runat="server">
                     </div>
-                    <hr>
                     <%} %>
 
-                        <%--<label>من تاريخ</label>--%>
+                    <hr>
+                    <div class="form-group empName">
+                        <label for="tranNum">:رقم المعاملة</label>
+                        <input type="number" class="form-control form-control-user"
+                            id="tranNum" name="tranNum" aria-describedby="emailHelp"
+                            placeholder="رقم المعاملة" runat="server">
+                    </div>
+                    <hr />
                     <div class="form-group startDate">
                          <label>:من تاريخ</label>
                         <input type="date" class="form-control form-control-user"
                             id="fromDate" name="fromDate" placeholder="من تاريخ" runat="server">
                     </div>
-                    <%--<label>الى تاريخ</label>--%>
                     <div class="form-group dueDate">
                         <label>:إلى تاريخ</label>
                         <input type="date" class="form-control form-control-user"
                             id="toDate" placeholder="الى تاريخ" runat="server">
                     </div>
+
                           <p class="newColor" id="flexRight"> <%= errMsg %> </p>
                     <div class="form-group">
 
-                        <asp:Button type="button" ID="submit" class="btn btn-primary w-100" OnClick="submit_Click" Text="submit" runat="server" />
+                        <asp:Button type="button" ID="submit" class="btn btn-primary w-100" OnClick="submit_Click" Text="ارسال" runat="server" />
                     </div>
                 </div>
                 </div>

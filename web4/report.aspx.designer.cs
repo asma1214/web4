@@ -24,6 +24,15 @@ namespace web4
         protected global::System.Web.UI.HtmlControls.HtmlInputText empName;
 
         /// <summary>
+        /// tranNum control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl tranNum;
+
+        /// <summary>
         /// fromDate control.
         /// </summary>
         /// <remarks>

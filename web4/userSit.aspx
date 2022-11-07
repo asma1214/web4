@@ -5,45 +5,57 @@
         <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
     <body>
-<div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">المعاملات</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr style="text-align:right">
-                                            <th>اسم الموظف</th>
-                                            <th>تاريخ الاستلام</th>
-                                            <th>المستلم</th>
-                                            <th>الجهة المرسل اليها</th>
-                                            <th>الجهة الواردة</th>
-                                            <th>رقم المعاملة</th>
-                                            <th>الحالة</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr style="text-align:right">
-                                            <th>اسم الموظف</th>
-                                            <th>تاريخ الاستلام</th>
-                                            <th>المستلم</th>
-                                            <th>الجهة المرسل اليها</th>
-                                            <th>الجهة الواردة</th>
-                                            <th>رقم المعاملة</th>
-                                            <th>الحالة</th>
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">المعاملات</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr style="text-align: right">
+                                <th>اسم الموظف</th>
+                                <th>تاريخ الاستلام</th>
+                                <th>المستلم</th>
+                                <th>الجهة المرسل اليها</th>
+                                <th>الجهة الواردة</th>
+                                <th>رقم المعاملة</th>
+                                <th>الحالة</th>
+                                <%if (Session["role"].ToString() == "a")
+                                    { %>
 
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        
-                                        <% Print_Table(); %>
-                                    </tbody>
-                                </table>
 
-                            </div>
-                        </div>
-                    </div>
+                                <th>توثيق المعاملة</th>
+                                <%} %>
+                            </tr>
+
+                        </thead>
+                        <tfoot>
+                            <tr style="text-align: right">
+                                <th>اسم الموظف</th>
+                                <th>تاريخ الاستلام</th>
+                                <th>المستلم</th>
+                                <th>الجهة المرسل اليها</th>
+                                <th>الجهة الواردة</th>
+                                <th>رقم المعاملة</th>
+                                <th>الحالة</th>
+                                <%if (Session["role"].ToString() == "a")
+                                    { %>
+
+
+                                <th>توثيق المعاملة</th>
+                                <%} %>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+
+                            <% Print_Table(); %>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
      
     <asp:ScriptManager ID="ScriptManager1" runat="server">
         <Scripts>
