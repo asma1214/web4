@@ -6,6 +6,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static System.Net.Mime.MediaTypeNames;
+using System.Web.UI.HtmlControls;
+using System.Windows.Documents;
+using System.Security.Cryptography.X509Certificates;
 
 namespace web4
 {
@@ -15,19 +19,138 @@ namespace web4
         string value;
         protected void Page_Load(object sender, EventArgs e)
         {
-            string sql = "SELECT name FROM [login] WHERE userID= '" + value + "'";
-            int a;
-            //SELECT password FROM [login] WHERE email = @email
-            //using (SqlCommand cmd = new SqlCommand(sql, conn))
-            //{
+            try
+            {
 
-            //}
-                //string v = "أسماء,1";
-                //char[] spearator = { ','};
-                //string v2 = v.Split(spearator)[1] ;
-                //Response.Write(v2);
+                if (!IsPostBack)
+                {
+                    //HtmlTable tbl = new HtmlTable();
+                    //string HtmlContent = "<table>";    
+                    Button button = new Button();
+                    //for (int i = 0; i < 4; i++)
+                    //{
+
+                    //    HtmlContent += "<tr><td>" + i + "</td></tr>";
+                    //    HtmlContent += "<tr><td>";
+                    button.ID = "submit";
+                    button.Text = "submit";
+                    button.Click += submit_Click;
+                    //    HtmlContent += "</td></tr>";
+                    //}
+
+                    //HtmlContent += "</table>";
+                    HtmlTable iTblCart = new HtmlTable();
+                    for (int i = 0; i < 4; i++)
+                    {
+                        HtmlTableRow iRowHeader = new HtmlTableRow();
+                        iRowHeader.InnerText = "HI";
+                        iTblCart.Rows.Add(iRowHeader);
+                        HtmlTableCell iCellHead1 = new HtmlTableCell();
+                        iCellHead1.InnerText = "Item";
+                        iRowHeader.Cells.Add(iCellHead1);
+
+                    }
+                    //iCellHead1.InnerText = "I";
+
+                    PlaceHolder.Controls.Add(iTblCart); ;
+
+                    // PlaceHolder.Controls.Add(new LiteralControl(HtmlContent));    
+                    //PlaceHolder.Controls.Add((button));
+                    //PlaceHolder.Controls.Add((button));    
+                }
 
             }
+            catch (Exception ex)
+            {
+
+                Response.Write(ex.Message);
+            }
+
+        }
+//string yourHTMLstring = "<asp:Button ID=\"save\"  Text=\"حفظ\" CommandArgument=\"55\" value=\"one\" OnClick=\"printNum\" runat=\"server\" />";
+string yourHTMLstring = "<p>hi</p>";
+            //<asp:Button ID="save" class="btn btn-primary" Text="حفظ" value="one" OnClick="submit_Click" runat="server" />
+            //var button = new Button
+            //{
+            //    ID = "Button",
+            //    //CommandArgument = "5",
+            //    Text = "Submit",
+            //    OnClientClick = "printint",
+                
+                
+
+            //};
+            //Button button = new Button();
+            //button.ID = "submit";
+            //button.Text = "submit";
+            //button.Click += submit_Click;
+            //button.CommandArgument = "6";
+            //button.Command += Load_Items;
+            // button.Command += Load_Items;
+            //PlaceHolder.Controls.Add(new LiteralControl(yourHTMLstring));
+           // PlaceHolder1.Controls.Add(button);
+
+            //Response.Write("<%int count = 1;%>");
+            //for(int i = 0; i < 2; i++)
+            //{
+            // Response.Output.Write("<input type=\"text\" id=\"trial\" name=\"trial\" value=\"yes\" runat=\"server\"/>");
+            //Response.Output.Write("<input type=\"text\" id=\"two\" name=\"trial1\" value=\"yes\" runat=\"server\"/>");
+            //}
+
+        public string printTable()
+        {
+            string html ="";
+            for (int i=0; i<4; i++)
+            {
+                html += "<tr> <td>"+i+"</td><tr>";
+                
+            }
+            return html;
+        }
+        private void Load_Items(object sender, CommandEventArgs e)
+        {
+            int id = Convert.ToInt32(e.CommandArgument);
+            // Do something with id
+        }
+        protected void printint()
+        {
+            Response.Write("hi");
+            //for (int i = 0; i < 2; i++)
+            //{
+
+            //    Response.Write("<input type=\"button\" id=\"trial\" name=\"trial\" value=\"one\" onclick=\"printNum\" runat=\"server\"/>");
+            //}
+            //    //Response.Output.Write("<input type=\"hidden\" name=1 value=\"yes\" runat=\"server\"/>");
+               // return 1;
+        }
+        protected void submit_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            string ProductID = btn.CommandArgument.ToString();
+            Response.Write("num: " + ProductID);
+
+            //string id = Request.Form["trial"];
+            //Response.Write("hi");
+            Response.Write("hi" );
+
+        }
+
+        protected void printNum(object sender, EventArgs e)
+        {
+            try
+            {
+                //string ProductID = ((LinkButton)sender).CommandArgument.ToString();
+                //Button btn = (Button)sender;
+                //string ProductID = btn.CommandArgument.ToString();
+                //Response.Write("num: " + ProductID);
+            }
+            catch (Exception ex)
+            {
+
+                Response.Write(ex.Message);
+            }
+        }
+
         public int print()
         {
             SqlDataAdapter command = new SqlDataAdapter();
@@ -60,14 +183,6 @@ namespace web4
 
 
             return 0;
-        }
-        protected void submit_Click(object sender, EventArgs e)
-        {
-
-            string sql = "SELECT name FROM login WHERE userID= 3";
-            SqlCommand cmd = new SqlCommand(sql, conn);
-            cmd.ExecuteNonQuery();
-
         }
     }
 }

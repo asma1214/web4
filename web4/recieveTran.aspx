@@ -3,20 +3,19 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">استلام معاملة</h6>
         </div>
         <div class="card-body">
-            <div class="row flex-row-reverse px-5 py-2 label-padding">
+            <div class="row flex-row-reverse px-5 py-2">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr style="text-align: right">
                                 <th>رقم المعاملة</th>
                                 <th>الحالة</th>
-                                <th>استلام المعاملة</th>
                             </tr>
 
                         </thead>
@@ -24,7 +23,6 @@
                             <tr style="text-align: right">
                                 <th>رقم المعاملة</th>
                                 <th>الحالة</th>
-                                <th>استلام المعاملة</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -33,17 +31,91 @@
                         </tbody>
                     </table>
                 </div>
-                <%--<div class="col-6 px-4">
+                <div>
+                <hr />
+
+                </div>
+                <div class="col-6 px-4">
+                    <div class="row flex-row-reverse ">
+                        <label class="label-padding">:اختيار رقم المعاملة</label>
+                    </div>
+                    <div class="row">
+                        <%print_names(); %>
+                    </div>
+                </div>
+
+
+                <div class="col-6 pe-2">
+                    <div class="row flex-row-reverse ">
+                        <label class="label-padding">:ارفاق صورة</label>
+                    </div>
+                    <div class="row">
+                        <asp:FileUpload class="form-control form-control-user"
+                            name="img" id="img" aria-describedby="emailHelp"
+                           style="margin-left: 50px" runat="server" required="required"/>
+                        <%--<input type="file" class="form-control form-control-user"
+                            name="senderAdress" id="senderAdress" aria-describedby="emailHelp"
+                            placeholder="الجهة المرسل اليها" style="margin-left: 50px" >--%>
+                    </div>
+                </div>
+                <div class="col-6 px-4">
+                    <div class="row flex-row-reverse">
+                        <label class="label-padding">:كتابة ملاحظة</label>
+                    </div>
+                    <div class="row">
+                        <select id="comment" name="comment" class="form-control form-control-user" runat="server">
+                            <option value="none" selected disabled hidden>اختر ملاحظة</option>
+                            <option value="1">رفض الموظف الإستلام</option>
+                            <option value="2">التوجيه خاطئ</option>
+                            <option value="3">عدم وجود موظفين</option>
+                            <option value="4">رفض الموظف التوقيع على البيان</option>
+                            <option value="5">اخرى</option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+                <div class="form-group">
+                    <asp:Button type="button" ID="submit" OnClick="submit_Click" class="btn btn-primary w-100" Text="إرسال" runat="server" />
+                </div>
+            <%if (flag1 == true)
+              { %>
+            <script>
+                Swal.fire({
+                    icon: '<%= icon %>',
+                    title: '<%= title %>',
+                    text: '<%= msg %>',
+                });
+                </script>
+            <%} %>
+        </div>
+    </div>
+
+    <%--<div class="modal fade" id="recieveBut" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">استلام المعاملة</h1>
+
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="row flex-row-reverse">
+                                            <div class="col-6 px-4">
                     <div class="row flex-row-reverse ">
                         <label>:ارفاق صورة</label>
                     </div>
-                    <div class="row">
-                        <input type="file" class="form-control form-control-user"
-                            name="senderAdress" id="senderAdress" aria-describedby="emailHelp"
-                            placeholder="الجهة المرسل اليها" style="margin-left: 50px" required>
+                    <div class="row">--%>
+                    <%--    <input type="file" class="form-control form-control-user"
+                            name="img" id="img" aria-describedby="emailHelp"
+                           style="margin-left: 50px" required runat="server">--%>
+
+<%--                        <asp:FileUpload class="form-control form-control-user"
+                            name="img" id="img" aria-describedby="emailHelp"
+                           style="margin-left: 50px" runat="server"/>
                     </div>
-                </div>--%>
-                <%--<div class="col-6 pe-2">
+                </div>
+                <div class="col-6 pe-2">
                     <div class="row flex-row-reverse">
                         <label>:كتابة ملاحظة</label>
                     </div>
@@ -56,38 +128,18 @@
 
                         </select>
                     </div>
-                </div>--%>
-                <%--<div class="form-group">
-                    <asp:Button type="button" ID="submit" class="btn btn-primary w-100 btn-padding" Text="إرسال" runat="server" />
-                </div>--%>
-            </div>
-        </div>
-    </div>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Launch demo modal
-    </button>
-
-<!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
                 </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer mt-4">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
+                                    <asp:Button ID="update" class="btn btn-primary" Text="حفظ" runat="server" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>--%>
+    
 
     <asp:ScriptManager ID="ScriptManager1" runat="server">
         <Scripts>

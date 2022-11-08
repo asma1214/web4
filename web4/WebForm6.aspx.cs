@@ -11,7 +11,22 @@ namespace web4
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //<input type="text" name="trial" value="yes" onclick="print(id)" runat="server"/>
+            //Response.Write("<input type=\"button\" name=\"trial\" value=\"yes\" onclick=\"print(\"one\")\" runat=\"server\"/>");
+        }
+        public int printInt(object sender, EventArgs e)
+        {
+            Button clickedButton = (Button)sender;
+            if (clickedButton == null) // just to be on the safe side
+                return 1;
 
+            if (clickedButton.ID == "trial")
+            {
+                Response.Write("hi");
+            }
+
+            Response.Write("i: " );
+            return 1;
         }
     }
 }

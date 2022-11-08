@@ -9,7 +9,12 @@
 <body>
     <form id="form1" runat="server">
         <div>
-        </div>
+                        <input id="trial" type="button" name="trial" value="yes" onclick="printInt" runat="server"/>
+
+
+
     </form>
 </body>
 </html>
+        </div>
+         
