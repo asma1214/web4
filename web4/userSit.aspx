@@ -56,6 +56,14 @@
                 </div>
             </div>
         </div>
+
+        <%--<div class="modal fade bd-example-modal-lg" id="recieveBut" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    ...
+                </div>
+            </div>
+        </div>--%>
      
     <asp:ScriptManager ID="ScriptManager1" runat="server">
         <Scripts>

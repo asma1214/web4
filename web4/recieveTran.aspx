@@ -91,54 +91,35 @@
         </div>
     </div>
 
-    <%--<div class="modal fade" id="recieveBut" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">استلام المعاملة</h1>
+    <div class="modal fade" id="recieveBut" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">استلام المعاملة</h1>
 
-                                </div>
-                                <div class="modal-body">
-                                    <div class="container-fluid">
-                                        <div class="row flex-row-reverse">
-                                            <div class="col-6 px-4">
-                    <div class="row flex-row-reverse ">
-                        <label>:ارفاق صورة</label>
-                    </div>
-                    <div class="row">--%>
-                    <%--    <input type="file" class="form-control form-control-user"
-                            name="img" id="img" aria-describedby="emailHelp"
-                           style="margin-left: 50px" required runat="server">--%>
-
-<%--                        <asp:FileUpload class="form-control form-control-user"
-                            name="img" id="img" aria-describedby="emailHelp"
-                           style="margin-left: 50px" runat="server"/>
-                    </div>
                 </div>
-                <div class="col-6 pe-2">
-                    <div class="row flex-row-reverse">
-                        <label>:كتابة ملاحظة</label>
-                    </div>
-                    <div class="row">
-                        <select name="comment" class="form-control form-control-user" style="margin-left: 50px">
-                            <option value="none" selected disabled hidden>اختر تعليق</option>
-                            <option value="1">تم التسليم بنجاح</option>
-                            <option value="2">حدث خطأ</option>
-                            <option value="3">مدري</option>
-
-                        </select>
-                    </div>
-                </div>
-                                        </div>
-                                    </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row flex-row-reverse">
+                            <div class="col-6 px-4">
+                                <div class="row flex-row-reverse ">
                                 </div>
-                                <div class="modal-footer mt-4">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
-                                    <asp:Button ID="update" class="btn btn-primary" Text="حفظ" runat="server" />
+                                <div class="row">
+                                </div>
+                            </div>
+                            <div class="col-6 pe-2">
+                                <div class="row flex-row-reverse">
+                                </div>
+                                <div class="row">
                                 </div>
                             </div>
                         </div>
-                    </div>--%>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
     
 
     <asp:ScriptManager ID="ScriptManager1" runat="server">

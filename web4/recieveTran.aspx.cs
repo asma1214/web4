@@ -188,7 +188,7 @@ namespace web4
                 {
                     
                 
-                Response.Write(path2);
+                //Response.Write(path2);
                 msg = uploadFile();
                 
                 string comments = "";
@@ -204,7 +204,7 @@ namespace web4
                         conn.Open();
 
                     cmd.Parameters.AddWithValue("@comments", comments);
-                    cmd.Parameters.AddWithValue("@img", path);
+                    cmd.Parameters.AddWithValue("@img", path2);
                     cmd.Parameters.AddWithValue("@tranNum", transNum);
                     int a = cmd.ExecuteNonQuery();
                     if (a == 0)
@@ -269,9 +269,10 @@ namespace web4
                         }
 
                         //save the file to folder
-                        img.SaveAs(folderPath + Path.GetFileName(img.FileName));
+                        img.SaveAs(folderPath + transNum + fileExt);
                         path2 = "trangImage/"+transNum+fileExt;
                         path = "trangImage/" + Path.GetFileName(img.FileName);
+                        //Response.Write(path2);
                         msg = "!تم ارفاق الصورة بنجاح";
                     }
 

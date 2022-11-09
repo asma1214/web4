@@ -74,14 +74,35 @@ namespace web4
                     else if(j == 7)
                     {
                         string status = dt.Rows[i][6].ToString();
+                        string sql = "SELECT comments,image FROM [transaction] WHERE tranNum=@tranNum";
                         if (Session["role"].ToString() == "a")
                         {
 
                             if (status == "s")
                             {
-                                Response.Write("<div style=\"justify-content:center; align-content:center\">");
-                                Response.Write("<button class=\"btn btn-primary w-100\"  runat=\"server\">عرض التفاصيل</button>");
-                                Response.Write("</div>");
+                                string id = dt.Rows[i][5].ToString();
+                                using (SqlCommand command = new SqlCommand(sql,conn))
+                                {
+                                    if (conn.State == ConnectionState.Closed)
+                                        conn.Open();
+                                    command.Parameters.AddWithValue("@tranNum", id);
+                                    SqlDataReader reader = command.ExecuteReader();
+                                    reader.Read();
+                                    string comm = reader["comments"].ToString();
+                                    string tranImg = reader["image"].ToString();
+                                    reader.Close();
+                                    if (conn.State == ConnectionState.Open)
+                                        conn.Close();
+                                    Response.Write("<div style=\"justify-content:center; align-content:center\">");
+                                    Response.Output.Write("<a role=\"button\" data-toggle=\"dropdown\" data-bs-toggle=\"modal\" data-bs-target=\"#{0}\" aria-haspopup=\"true\" aria-expanded=\"false\"><span style=\"color: #4e73df;\">عرض التفاصيل</span></a>","a"+id);
+                                    Response.Write("</div>");
+                                    Response.Output.Write("<div class=\"modal fade\" id=\"{0}\" data-bs-keyboard=\"false\" tabindex=\"-1\" aria-labelledby=\"staticBackdropLabel\" aria-hidden=\"true\">\r\n                        <div class=\"modal-dialog modal-dialog-centered modal-lg\">\r\n                            <div class=\"modal-content\">\r\n                                <div class=\"modal-header\">\r\n                                    <h1 class=\"modal-title fs-5\" id=\"staticBackdropLabel\">تفاصيل المعاملة</h1>\r\n\r\n                                </div>\r\n                                <div class=\"modal-body\">\r\n                                    <div class=\"container-fluid\">\r\n                                        <div class=\"row flex-row-reverse\">\r\n   <div class=\"col-md-6\"> <label for=\"empName\" class=\"labels\">:الملاحظة</label> <label for=\"empName\" class=\"labels\">{1}</label> </div>  <div class=\"col-md-6 mt-2\"><label for=\"empName\" class=\"labels\">:الصورة</label>  <img src ={2} class=\"imgSize\"/> </div>                                   </div>\r\n                                    </div>\r\n                                </div>\r\n                                <div class=\"modal-footer mt-4\">\r\n                                    <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">إغلاق</button>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>", "a" + id,comm,tranImg);
+                                    //Response.Output.Write("<div class=\"modal fade\" id=\"{0}\" data-bs-keyboard=\"false\" tabindex=\"-1\" aria-labelledby=\"staticBackdropLabel\" aria-hidden=\"true\">\r\n                        <div class=\"modal-dialog modal-dialog-centered modal-lg\">\r\n                            <div class=\"modal-content\">\r\n                                <div class=\"modal-header\">\r\n                                    <h1 class=\"modal-title fs-5\" id=\"staticBackdropLabel\">الملف الشخصي</h1>\r\n\r\n                                </div>\r\n                                <div class=\"modal-body\">\r\n                                    <div class=\"container-fluid\">\r\n                                        <div class=\"row flex-row-reverse\">\r\n                                        </div>\r\n                                    </div>\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>", "a" + id);
+                                //Response.Output.Write("<div class=\"modal fade\" id=\"{0}\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\r\n  <div class=\"modal-dialog modal-dialog-centered modal-lg\" role=\"document\">\r\n    <div class=\"modal-content\">\r\n      <div class=\"modal-header\">\r\n        <h5 class=\"modal-title\" id=\"exampleModalLabel\">Modal title</h5>\r\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">\r\n          <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n      </div>\r\n      <div class=\"modal-body\">\r\n        ...\r\n      </div>\r\n      <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Close</button>\r\n        <button type=\"button\" class=\"btn btn-primary\">Save changes</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>", "a"+id);
+                                //Response.Write("<div class=\"modal fade bd-example-modal-lg\" id=\"recieveBut\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myLargeModalLabel\" aria-hidden=\"true\">\r\n            <div class=\"modal-dialog modal-lg\">\r\n                <div class=\"modal-content\">\r\n                    ...\r\n                </div>\r\n            </div>\r\n        </div>");
+                                //Response.Write(" <div class=\"modal fade\" id=\"recieveBut\" data-bs-keyboard=\"false\" tabindex=\"-1\" aria-labelledby=\"staticBackdropLabel\" aria-hidden=\"true\">\r\n        <div class=\"modal-dialog modal-dialog-centered modal-lg\">\r\n            <div class=\"modal-content\">\r\n                <div class=\"modal-header\">\r\n                    <h1 class=\"modal-title fs-5\" id=\"staticBackdropLabel\">استلام المعاملة</h1>\r\n\r\n                </div>\r\n                <div class=\"modal-body\">\r\n                    <div class=\"container-fluid\">\r\n                        <div class=\"row flex-row-reverse\">\r\n                            <div class=\"col-6 px-4\">\r\n                                <div class=\"row flex-row-reverse \">\r\n                                </div>\r\n                                <div class=\"row\">\r\n                                </div>\r\n                            </div>\r\n                            <div class=\"col-6 pe-2\">\r\n                                <div class=\"row flex-row-reverse\">\r\n                                </div>\r\n                                <div class=\"row\">\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n\r\n            </div>\r\n        </div>\r\n    </div>");
+                                }
+                                
                             }
                             else
                             {

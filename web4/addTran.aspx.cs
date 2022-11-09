@@ -65,7 +65,7 @@ namespace web4
                     }
 
 
-                    if (tranID.Value.Length < 5)
+                    if (tranID.Value.Length < 5 || tranID.Value.Length > 5)
                     {
                         msg = "يجب ان يتكون رقم المعاملة من 5 ارقام";
                         icon = "warning";
