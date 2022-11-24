@@ -188,7 +188,6 @@ namespace web4
                 {
                     
                 
-                //Response.Write(path2);
                 msg = uploadFile();
                 
                 string comments = "";
@@ -224,6 +223,7 @@ namespace web4
 
                 }
                 }
+
                 else
                 {
                     msg = "عليك اختيار رقم  معاملة";
@@ -259,6 +259,7 @@ namespace web4
                     {
                         msg = "الصورة غير صالحة ، يجب اختيار امتداد png او jpg";
                     }
+
                     else
                     {
                         //create a folder

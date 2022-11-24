@@ -38,7 +38,8 @@ namespace web4
                 string employeeName;
                 string empEmail;
                 int a;
-                if (value == null || reciveDate.Value.Length == 0 || reciever.Value.Length == 0 || senderAdress.Value.Length == 0 || recieverAdress.Value.Length == 0 || tranID.Value.Length == 0)
+                if (value == null || reciveDate.Value.Length == 0 || reciever.Value.Length == 0 || 
+                    senderAdress.Value.Length == 0 || recieverAdress.Value.Length == 0 || tranID.Value.Length == 0)
                 {
                     msg = "يجب تعبئة جميع الحقول";
                     icon = "warning";
@@ -71,6 +72,7 @@ namespace web4
                         icon = "warning";
                         title = "!حدث خطأ";
                     }
+
                     else
                     {
                         sql = "SELECT count(*) FROM [transaction] WHERE tranNum = @tranNumber";

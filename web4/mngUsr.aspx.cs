@@ -68,6 +68,7 @@ namespace web4
                         if (count > 0)
                             exist = (int)cmd.ExecuteScalar() > 0;
                     }
+
                     if (exist)
                     {
                         msg = "البريد الإلكتروني مسجل مسبقًا";

@@ -45,6 +45,7 @@ namespace web4
                 SqlParameter[] param = new SqlParameter[1];
                 param[0] = new SqlParameter("@email", yourEmail.Value);
                 cmd.Parameters.Add(param[0]);
+
                 if (conn.State == ConnectionState.Closed)
                     conn.Open();
                 cmd.ExecuteReader();
@@ -67,14 +68,13 @@ namespace web4
                     role = reader["role"].ToString();
                     if (conn.State == ConnectionState.Open)
                         conn.Close();
-                    bool varify = BCrypt.Net.BCrypt.Verify(yourPassword.Value, password);
-                    // if (username == yourUsername.Value)
 
+
+                    bool varify = BCrypt.Net.BCrypt.Verify(yourPassword.Value, password);
                     if (email == yourEmail.Value && varify)
                     {
                         Session["name"] = name;
                         Session["role"] = role;
-                        //Session["username"] = username;
                         Session["email"] = email;
 
                         Response.Redirect("userSit.aspx");
