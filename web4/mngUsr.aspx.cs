@@ -8,7 +8,7 @@ namespace web4
     public partial class WebForm3 : System.Web.UI.Page
     {
         //SqlConnection conn = new SqlConnection("Data Source=DESKTOP-63JE2M4\\WEBDB; Initial Catalog=webDB; User Id=sa; Password=webDB1234; Integrated Security=false");
-        SqlConnection conn = new SqlConnection("Data Source=ASMffA_BADR\\DBWEB; Initial Catalog=webDB; User Id=asmaBadr; Password=webDB1234; Integrated Security=false");
+        SqlConnection conn = new SqlConnection("Data Source=ASMA_BADR\\DBWEB; Initial Catalog=webDB; User Id=asmaBadr; Password=webDB1234; Integrated Security=false");
 
         public bool flag = false;
         public string msg = "";
