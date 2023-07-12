@@ -7,7 +7,7 @@
         {  %>
     <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">المعاملات</h6>
+                <h6 class="m-0 font-weight-bold text-primary">إدارة المستخدمين</h6>
             </div>
         <div class="card-body">
             <div class="p-5 flex-row-reverse">
@@ -22,8 +22,21 @@
                         <input type="text" class="form-control form-control-user"
                             id="empName" aria-describedby="emailHelp"
                             placeholder="إسم الموظف" runat="server">
-                    </div>
+                                        </div>
+                 <div class="form-group empName">
+                       <label>:كلمة السر</label>
+                        <input type="password" class="form-control form-control-user"
+                            id="password"
+                            placeholder="كلمة السر" runat="server">
+                                        </div>
 
+
+                                 <div class="form-group empName">
+
+                   <div style="display: flex; justify-content: right;">
+                       <div style="float: right;">
+                                      <asp:CheckBox ID="admin1" runat="server"  Text="ادمن"  /> 
+                          </div> </div>  </div>
                  
                 <div class="form-group">
                 <asp:Button type="button" ID="submit" class="btn btn-primary w-100" OnClick="submit_Click" Text="إرسال" runat="server" />
